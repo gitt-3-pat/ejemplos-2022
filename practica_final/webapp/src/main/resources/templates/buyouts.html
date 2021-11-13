@@ -1,0 +1,34 @@
+<!DOCTYPE html><html xmlns:th="http://www.thymeleaf.org" lang="es"><head th:include="fragments/head"></head>
+<body>
+<div id="box-mobile-menu" class="box-mobile-menu full-height full-width">
+	<div class="box-inner">
+		<span class="close-menu"><span class="icon pe-7s-close"></span></span>
+	</div>
+</div>
+	<div id="header-ontop" class="is-sticky"></div>	<!-- BEGIN HEADER INCLUDE -->	<header th:include="fragments/header" id="header" class="header style5"></header>	<!-- END HEADER -->
+    <div class="main-container no-sidebar">
+        <div class="container">
+            <div class="main-content">
+                <div style="text-align:center" class="page-title">
+                    <h3>Mis compras</h3>
+                </div>
+                <div class="row" id="wishlist-body">
+                    <div th:if="${buyouts.size() != 0}" class="col-sm-12 col-md-12">
+                        <table class="shop_table cart">                        	<thead>                        		<tr>                        			<td class="col-sm-3 col-md-3">Producto</td>                        			<td class="col-sm-3 col-md-3">Estado del pedido</td>                        			<td class="col-sm-3 col-md-3">Estado del envío</td>                        			<td class="col-sm-3 col-md-3">Nº de seguimiento</td>                        		</tr>                        	</thead>
+                            <tbody>
+                                <tr th:each="order : ${buyouts}">
+                                    <td class="col-sm-3 col-md-3 product-thumbnail"><a target="_blank" th:href="@{'/products/'+${order.items[0].itemId}}"><img th:src="@{'/products/' +${order.items[0].itemId} +'/image/'+ ${images.get(order.items[0].itemId)[0].id}}" alt=""></a></td>
+                                    <td class="col-sm-3 col-md-3" th:text="${order.orderState.getReadValue()}"></td>
+                                    <td class="col-sm-3 col-md-3" th:text="${order.deliveryStatus.getReadValue()}"></td>
+                                    <td class="col-sm-3 col-md-3" th:if="${order.deliveryReference == null}"> <p style="text-align:center" >---</p></td>                                    <td class="col-sm-3 col-md-3" th:if="${order.deliveryReference != null}"><p style="text-align:center" th:text="${order.deliveryReference}"></p><p style="text-align:center" ><a target="_blank" th:href="'https://www.correos.es/es/es/herramientas/localizador/envios/detalle?tracking-number='+ ${order.deliveryReference}"><img style="max-width:100px;margin-left:20px" th:src="@{/images/correos.png}"></img></a></p></td>
+                                </tr>
+
+                            </tbody>
+                        </table>                        <div th:if="${buyouts.size() == 0}" class="text-center page-404">				             <h2 class="title">No ha realizado ninguna compra aún.</h2>				             <br/>				             <a class="button" th:href="@{/home}">Ir al inicio</a>								        </div>                        
+                    </div>
+                </div>
+            </div>		<div  th:include="fragments/pre_footer" class="margin-top-60"></div>
+        </div>
+    </div> 	<footer th:include="fragments/footer" class="footer"></footer>	<div th:include="fragments/scripts"></div>
+</body>
+</html>

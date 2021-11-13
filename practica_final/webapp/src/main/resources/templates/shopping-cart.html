@@ -1,0 +1,37 @@
+<!DOCTYPE html><html xmlns:th="http://www.thymeleaf.org" lang="es"><head th:include="fragments/head"></head>
+<body>
+<div id="box-mobile-menu" class="box-mobile-menu full-height full-width">
+	<div class="box-inner">
+		<span class="close-menu"><span class="icon pe-7s-close"></span></span>
+	</div>
+</div>
+	<div id="header-ontop" class="is-sticky"></div>	<!-- BEGIN HEADER INCLUDE -->	<header th:include="fragments/header" id="header" class="header style5"></header>	<!-- END HEADER -->
+    <div class="main-container no-sidebar">
+        <div class="container">
+            <div class="main-content">
+                <div style="text-align:center" class="page-title">
+                    <h3>Carrito</h3>
+                </div>
+                <div class="row" id="wishlist-body">
+                    <div th:if="${session != null AND session.wishlist != null}" class="col-sm-12 col-md-12">
+                        <table th:if="${session.wishlist.items.size() > 0}"class="shop_table cart">
+                            <tbody>
+                                <tr th:each="item : ${session.wishlist.items}">
+                                    <td class="product-thumbnail"><a target="_blank" th:href="@{'/products/'+${item.id}}"><img th:src="@{'/products/' +${item.id} +'/image/'+ ${item.images[0].id}}" alt=""></a></td>
+
+                                    <td class="product-name"><a target="_blank" th:href="@{'/products/'+${item.id}}" th:text="${'Vestido referencia #'+ item.id}"></a></td>
+                                    <td th:text="${#numbers.formatDecimal(item.price, 0, 'POINT', 2, 'COMMA') + ' €'}"></td>
+                                    <td th:text="${item.itemState.getReadValue()}">En stock</td>
+                                    <td class="product-remove remove-wishlist" th:attr="data-id=${item.id},data-main-wishlist=true"><a href="#"><i class="fa fa-close"></i></a></td>
+                                    <td class="text-right"><a th:attr="data-id=${item.id}" class="button btn-buyout" href="#">Comprar</a></td>
+                                </tr>
+
+                            </tbody>
+                        </table>                        <div th:if="${session.wishlist.items.size() == 0}" class="text-center page-404">				             <h2 class="title">No tiene productos en la lista de deseos.</h2>				             <br/>				             <a class="button" th:href="@{/dresses}">Volver a productos</a>								        </div>                        
+                    </div>
+                </div>
+            </div>		<div  th:include="fragments/pre_footer" class="margin-top-60"></div>
+        </div>
+    </div> 	<footer th:include="fragments/footer" class="footer"></footer>	<div th:include="fragments/scripts"></div>
+</body>
+</html>

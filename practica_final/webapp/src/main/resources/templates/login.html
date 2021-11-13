@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"  lang="es">
+
+<head th:include="fragments/head">
+</head>
+<style>
+	.comment-form {
+     text-align: center !important; 
+	}
+	.comment-form input[type="text"], .comment-form input[type="password"], .comment-form input[type="number"], .comment-form select {
+	    clear: both;
+	    margin-bottom: 30px;
+	    padding: 6px 15px;
+	    width: 48%;
+	}
+</style>
+
+<body>
+	<div id="box-mobile-menu" class="box-mobile-menu full-height full-width">
+		<div class="box-inner">
+			<span class="close-menu"><span class="icon pe-7s-close"></span></span>
+		</div>
+	</div>
+	<div id="header-ontop" class="is-sticky"></div>
+	<!-- BEGIN HEADER INCLUDE -->
+	<header th:include="fragments/header" id="header" class="header style5"></header>
+	<!-- END HEADER -->
+	<div class="main-container">
+		<div class="container">
+			<div id="comments">
+			    <div class="comment-form login-form">
+			    	<hr/>
+		            <form id="login-form" method="post" th:action="@{/login}">
+		             	<div th:if="${errorMsg}" class="row">
+		                	<p style="color:red"><b th:text="${errorMsg}"></b></p>
+	                	</div>
+	                	<div th:if="${infoMsg}" class="row">
+		                	<p style="color:#22ad41"><b th:text="${infoMsg}"></b></p>
+	                	</div>
+		                <div class="row">
+		                	<label for="email">E-MAIL:</label>
+	                	</div>
+		                <div class="row">
+		                	<input type="text" id="email" name="username" value="" size="30" placeholder="Tu e-mail" aria-required="true">
+		                </div>
+		                <div class="row">
+		                	<label for="password">CONTRASEÑA:</label>
+	                	</div>
+		                <div class="row">
+		                	<input type="password" id="password" name="password" value="" size="30" placeholder="Tu contraseña" aria-required="true">
+		                </div>                    
+		               	 <div class="row">
+		               	 	<div class="checkbox" style="margin-left:0px !important; margin-bottom: 3% !important"><input id="remember-me" type="checkbox" name="remember-me" checked><label style="text-transform:uppercase" for="additional-information">Recuérdame</label></div>
+		               	 </div>
+		                <div class="row">
+		                	<input type="submit" name="button" class="submit-btn" value="Iniciar sesión">
+		                	<input id ="register-btn" type="submit" name="button" class="submit-btn" value="Regístrate">
+						</div>
+		                                                   
+		            </form>
+		            <hr/>
+		            <h3 class="comment-reply-title">Inicio de sesión con</h3>
+		            <div class="row" id="social-login">
+		            	 <a class="btn login-btn login-btn-google" th:href="@{/oauth2/authorization/google}" role="button" style="text-transform:none">
+						      <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+						       Google
+						    </a>
+						   <!--  <a class="btn login-btn login-btn-facebook" href="/users/googleauth" role="button" style="text-transform:none">
+						      <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Facebook_icon_2013.svg" />
+						      Facebook
+						    </a> -->
+				    </div>
+			    </div>  
+			</div>
+			      
+	  	</div>
+	</div>
+	<footer th:include="fragments/footer" class="footer"></footer>
+	<div th:include="fragments/scripts"></div>
+</body>
+</html>

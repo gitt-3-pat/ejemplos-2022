@@ -1,0 +1,19 @@
+<a  class="cart-link" th:href="@{/wishlist}"><span style="margin-top:5px;font-size:20px" class="icon fa fa-heart"></span> <span class="count" th:if="${session != null AND session.wishlist != null AND session.wishlist.items.size() > 0}" th:text="${session.wishlist.items.size}">3</span></a>
+<div th:if="${session != null AND session.wishlist != null}" class="show-shopping-cart">
+   <h3 class="title">Tienes <span class="text-primary" th:text="${session.wishlist.items.size() + ' productos'}"></span> en tu lista de deseos</h3>
+   <ul class="list-product">
+   	<li th:each="item : ${session.wishlist.items}">
+   		<div class="thumb">
+   			<a th:href="@{'/products/'+${item.id}}"><img alt="" th:src="@{'/products/' +${item.id} +'/image/'+ ${item.images[0].id}}"></a>
+   		</div>
+   		<div class="info">
+   			<h4 class="product-name"><a th:href="@{'/products/'+${item.id}}" th:text="${item.description}"></a></h4>
+   			<span class="price" th:text="${#numbers.formatDecimal(item.price, 0, 'POINT', 2, 'COMMA') + ' €'}"></span>
+   			<a class="remove-item remove-wishlist" th:attr="data-id=${item.id}" href="#"><i class="fa fa-close"></i></a>
+   		</div>
+   	</li>
+   </ul>
+   <div class="group-button">
+   	<a th:href="@{/wishlist}" class="button">Ver lista</a>
+   </div>
+</div>

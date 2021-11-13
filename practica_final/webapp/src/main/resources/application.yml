@@ -1,0 +1,31 @@
+server.port: 9090
+
+admin:
+  user-list: admin@gmail.com
+spring:
+  mail:
+      from: correo@sth.com
+      fromName: Spring Boot & Thymeleaf E-Commerce
+      host: smtp.serviciodecorreo.es
+      port: 587
+      username: user
+      password: pass
+      properties:
+        mail.smtp.auth: true
+        mail.smtp.starttls.enable: true
+  datasource:
+      url: jdbc:mysql://localhost:3306/e_commerce?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false&autoReconnect=true&nullDatabaseMeansCurrent=true
+      username: root
+      password: changeIt!
+      connection-timeout: 10000
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      minimum-idle: 2
+      maximum-pool-size: 30
+      initialization-mode: always
+      schema[0]: classpath:db/migration/schema.sql
+      
+spring.security.oauth2.client.registration:
+   google:
+      client-id: 448902528718-std7tloif226fosklkastbqdah6j9jul.apps.googleusercontent.com
+      client-secret: NqdzJLfLHuuEO5AziuCr0s6-
+logging.level.org.springframework.jdbc.core: TRACE

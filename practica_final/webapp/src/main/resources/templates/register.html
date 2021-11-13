@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"  lang="es">
+
+<head th:include="fragments/head"></head>
+	<style type="text/css">
+	.comment-form input[type="text"] {
+	  width: 100%;
+	}
+	.comment-form input[type="password"] {
+	  width: 100%;
+	}
+	.comment-form select {
+	  width: 100%;
+	}
+	.comment-form {
+   	  text-align: justify;
+	}
+	
+	.checkbox{
+	  margin-left: 5%;
+	}
+	
+	.checkbox input[type="checkbox"]{
+	  transform: scale(1.5);
+	}
+	</style>
+<body>
+	<div id="box-mobile-menu" class="box-mobile-menu full-height full-width">
+		<div class="box-inner">
+			<span class="close-menu"><span class="icon pe-7s-close"></span></span>
+		</div>
+	</div>
+	<div id="header-ontop" class="is-sticky"></div>
+	<!-- BEGIN HEADER INCLUDE -->
+	<header th:include="fragments/header" id="header" class="header style5"></header>
+	<!-- END HEADER -->
+	<hr/>
+	
+	<h1 style="text-align:center">Registro</h1>
+	<div class="main-container">
+		<div class="container">
+			<div id="comments">
+			    <div class="comment-form login-form">
+			    	<hr/>
+		            <form  id="register-user-form" method="post" th:action="@{/register}" th:object="${user}">
+		                <div th:if="${errorMsg}" class="row">
+		                	<p style="color:red;text-align: center;"><b th:text="${errorMsg}"></b></p>
+	                	</div>
+		                <div class="row">
+		                	<div class="col-sm-6">
+		                		<label for="name">Nombre y apellidos <span class="span-required">(*)</span></label>
+			                	<input th:field="*{fullName}" type="text" id="name" name="name" size="30" placeholder="Nombre y apellidos" aria-required="true" required>
+		                	</div>
+		                </div>
+		                <div class="row">
+		                	<div class="col-sm-3">
+		                		<label for="email">E-MAIL <span class="span-required">(*)</span></label>
+			                	<input th:field="*{email}" type="text" id="email" name="email" th:value="${param.email != null ? param.email : ''}" size="30" placeholder="E-mail" aria-required="true" required>
+			                </div>
+			                <div class="col-sm-3">
+		                		<label for="phone">Teléfono <span class="span-required">(*)</span></label>
+		                		<input th:field="*{contactInfo.phone}" type="text" id="phone" name="phone" value="" size="30" placeholder="Teléfono/Móvil" aria-required="true" required>
+                			</div>
+                			<div class="col-sm-6">
+		                		<label for="dni">DNI/NIF <span class="span-required">(*)</span></label>
+		                		<input th:field="*{contactInfo.dni}" type="text" id="dni" name="dni" value="" size="30" placeholder="DNI o NIF" aria-required="true" required>
+                			</div>
+		                </div>
+		                <div class="row">
+		                	<div class="col-sm-6">
+		                		<p style="color:red" class="hide" id="password-mismatch">¡Las contraseñas no coinciden!</p>
+		                	</div>
+		                </div>
+		                <div th:if="${null == user.provider}" class="row">
+		               		<div class="col-sm-6">
+		                		<label for="password">Contraseña <span class="span-required">(*)</span></label>
+		                		<input th:field="*{password}" type="password" id="password" name="password" value="" size="30" placeholder="Contraseña" aria-required="true" required>
+                			</div>
+	                		<div class="col-sm-6">
+		                		<label for="password-repeat">Repite la contraseña <span class="span-required">(*)</span></label>
+		                		<input type="password" id="password-repeat" name="password-repeat" value="" size="30" placeholder="Repite la contraseña" aria-required="true" required>
+                			</div>
+	                	</div>
+	                	
+	                	 <div class="row">
+		                	<div class="col-sm-4">
+		                		<label for="country">País <span class="span-required">(*)</span></label>
+		                		<select th:field="*{contactInfo.country}" id="country" name="country">
+		                			<option value="SPAIN">España</option>
+		                		</select>
+		                	</div>
+		                	<div class="col-sm-4">
+		                		<label for="provincia">Provincia <span class="span-required">(*)</span></label>
+		                		<select th:field="*{contactInfo.province}" id="provincia" name="provincia" required>
+		                			<option th:each="provincia : ${provincias}" th:value="${provincia}" th:text="${provincia}"></option>
+		                		</select>
+		                	</div>
+		                	<div class="col-sm-4">
+		                		<label for="localty">Localidad <span class="span-required">(*)</span></label>
+		                		<input th:field="*{contactInfo.localty}" type="text" id="localty" name="localty" value="" size="30" placeholder="Localidad, Pueblo, Municipio" aria-required="true" required>
+		                	</div>
+		                </div>
+		                <div class="row">
+		                	<div class="col-sm-9">
+		                		<label for="address">Dirección <span class="span-required">(*)</span></label>
+		                		<input th:field="*{contactInfo.address}" type="text" id="address" name="address" value="" size="30" placeholder="Domicilio" aria-required="true" required>
+		                	</div>
+		                	<div class="col-sm-3">
+		                		<label for="postal-code">Código postal <span class="span-required">(*)</span></label>
+		                		<input th:field="*{contactInfo.postalCode}" type="text" id="postal-code" name="postal-code" value="" size="30" placeholder="Código postal" aria-required="true" required>
+		                	</div>
+		                </div>
+		                <div class="row">
+		                	<div class="col-sm-12">
+		                		<label>¿Qué buscas? <span class="fa fa-info-circle" data-toggle="tooltip" data-placement="bottom" data-original-title="Elige qué vas a hacer en la plataforma. Puedes marcar ambas opciones."></span></label>
+		                		
+		                			<div class="checkbox"><input id="checkbox-isVendor" type="checkbox" value=""><label for="additional-information">Vender</label></div>
+		                		
+		                			<div class="checkbox"><input id="checkbox-isBuyer" type="checkbox" value=""><label for="additional-information">Comprar</label></div>
+		                		
+		                	</div>
+		                </div>
+		                <div class="row" style="text-align:center;margin-top:30px">
+		                	<div class="checkbox"><input id="checkbox-legal-1" type="checkbox" value=""><label>	He leído y acepto el <a th:href="@{/aviso-legal.pdf}" target="_blank">aviso legal</a> y la <a th:href="@{/aviso-legal.pdf}" target="_blank">política de privacidad</a> </label></div>
+		                </div>
+		               	<div class="clear"></div>
+		                <div  style="margin-top:30px" class="row">
+		               	 	<div class="col-sm-12" style="text-align:center">
+		                		<input type="submit" name="button" id="register-btn-post" class="submit-btn" value="Registrarse">
+							</div>
+						</div>
+						
+						<input type="hidden" id="provider" th:field="*{provider}"/>
+						<input type="hidden" id="isVendor" name="isVendor" value="false"/>
+						<input type="hidden" id="isBuyer" name="isBuyer" value="false"/>                         
+		            </form>
+		            <hr/>
+			    </div>  
+			</div>
+			      
+	  	</div>
+	</div>
+	<footer th:include="fragments/footer" class="footer"></footer>
+	<div th:include="fragments/scripts"></div>
+</body>
+</html>

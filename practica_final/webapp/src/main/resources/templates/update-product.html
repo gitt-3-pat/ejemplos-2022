@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"  lang="es">
+
+<head th:include="fragments/head"></head>
+<body>
+	<div id="box-mobile-menu" class="box-mobile-menu full-height full-width">
+		<div class="box-inner">
+			<span class="close-menu"><span class="icon pe-7s-close"></span></span>
+		</div>
+	</div>
+	<div id="header-ontop" class="is-sticky"></div>
+	<!-- BEGIN HEADER INCLUDE -->
+	<header th:include="fragments/header" id="header" class="header style5"></header>
+	<!-- END HEADER -->
+	<hr/>
+	
+	<h1 style="text-align:center">Modificar anuncio</h1>
+	<div class="main-container">
+		<div class="container">
+			<div id="comments">
+			    <div class="comment-form login-form">
+			    	<hr/>
+		            <form  id="register-form" method="post" th:action="@{/products/update}" th:object="${item}">
+		            	<input type="hidden" th:field="*{id}"/>
+		                <div class="row">
+		                	<div class="col-sm-5">
+		                		<label for="title">Título del artículo <span class="span-required">(*)</span></label>
+			                	<input th:field="*{title}" type="text" id="title" name="title" size="30" placeholder="Dale un título a tu artículo"  required>
+		                	</div>
+                			<div class="col-sm-2">
+		                		<label for="type">Estado del artículo <span class="span-required">(*)</span></label>
+		                		<select th:field="*{itemState}" id="item-state" name="itemState">
+		                			<option th:each="itemState : ${itemStates}" th:value="${itemState}" th:text="${itemState.readValue}"></option>
+		                		</select>
+                			</div>
+                			<div class="col-sm-2">
+			                	<label for="price">Precio</label>
+			                	<div class="input-group"> 
+       								<input th:field="*{price}" id="item-price" name="price" style="text-align:right" type="number" min="0" step="0.01" lang="es" data-number-to-fixed="2" data-number-stepfactor="100" required/>
+							        <span class="input-group-addon">€</span>
+							    </div>
+			                </div>
+			                <div class="col-sm-2">
+		                		<label for="type">Tipo de artículo <span class="span-required">(*)</span></label>
+		                		<select th:field="*{type}" id="item-type" name="state">
+		                			<option th:each="type : ${types}" th:value="${type}" th:text="${type.readValue}"></option>
+		                		</select>
+                			</div>
+		                </div>
+		                <div class="row">
+		                	<div class="col-sm-12">
+		                		<label for="description">Descripción <span class="span-required">(*)</span></label>
+			                	<textarea th:field="*{description}" rows="4" id="description" name="description" placeholder="Descripción de tu artículo"  required></textarea>
+			                </div>
+		                </div>
+		                <div class="row">
+		               		<div class="col-sm-2">
+		                		<label for="internalRating"> Valoración interna (1-10)  <span class="span-required">(*)</span></label>
+			                	<input th:field="*{internalRating}" min="0" step="1" type="number" max="10" id="internalRating" name="internalRating" placeholder="Valoración del artículo"  required>
+		                	</div>
+                			<div class="col-sm-3">
+		                		<label for="brand"> Marca <span class="span-required">(*)</span></label>
+			                	<input th:field="*{brand}" type="text" id="brand" name="brand" size="30" placeholder="Marca del artículo"  required>
+		                	</div>
+		                	<div class="col-sm-2 vestido">
+		                		<label for="itemYear"> Año <span class="span-required">(*)</span></label>
+			                	<input th:field="*{itemYear}" min="0" step="1" type="number" id="itemYear" name="itemYear" placeholder="Año" class="vestido-item" required>
+		                	</div>
+	                	</div> 
+	                	<div class="row">
+	                		<div class="col-sm-3">
+                				<label for="material"> Material </label>
+     							<input  th:field="*{material}" type="text" id="material" name="material"  placeholder="Material del artículo">
+                			</div>
+                			<div class="col-sm-2 velo">
+                				<label for="itemSize"> Talla <span class="span-required">(*)</span></label>
+     							<input  th:field="*{itemSize}" class="velo-item" min="0" step="1" type="number" id="itemSize" name="itemSize"  placeholder="Talla del artículo"  required>
+                			</div>
+                			<div class="col-sm-2 velo">
+                				<label for="sizeCountry"> Tallaje</label>
+                				<select id="sizeCountry" name="sizeCountry">
+		                			<option value="EU">EU</option>
+		                		</select>
+                			</div>
+	                	</div>
+		               	<div class="clear"></div>
+		                <div class="row">
+		               	 	<div class="col-sm-12" style="text-align:center">
+		                		<input type="submit" name="button" class="submit-btn" value="Modificar Anuncio">
+		                		<a sec:authorize="hasRole('ROLE_ADMIN')" th:attr="data-id=${item.id}" class="button btn-delete-product-pre" href="#" >Eliminar</a>
+							</div>
+						</div>
+						
+					</form>
+		            <hr/>
+			    </div>  
+			</div>
+			      
+	  	</div>
+	</div>
+	<footer th:include="fragments/footer" class="footer"></footer>
+	<div th:include="fragments/scripts"></div>
+</body>
+</html>

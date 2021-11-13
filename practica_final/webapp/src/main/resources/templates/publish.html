@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"  lang="es">
+
+<head th:include="fragments/head"></head>
+<body>
+	<div id="box-mobile-menu" class="box-mobile-menu full-height full-width">
+		<div class="box-inner">
+			<span class="close-menu"><span class="icon pe-7s-close"></span></span>
+		</div>
+	</div>
+	<div id="header-ontop" class="is-sticky"></div>
+	<!-- BEGIN HEADER INCLUDE -->
+	<header th:include="fragments/header" id="header" class="header style5"></header>
+	<!-- END HEADER -->
+	<hr/>
+	
+	<h1 style="text-align:center">Crea tu anuncio</h1>
+	<div class="main-container">
+		<div class="container">
+			<div id="comments">
+			    <div class="comment-form login-form">
+			    	<hr/>
+		            <form  id="register-form" method="post" th:action="@{/publish}" th:object="${item}" enctype="multipart/form-data">
+		                <div class="row">
+		                	<div class="col-sm-6">
+		                		<label for="title">Título del artículo <span class="span-required">(*)</span></label>
+			                	<input th:field="*{title}" type="text" id="title" name="title" size="30" placeholder="Dale un título a tu artículo"  required>
+		                	</div>
+		                	<div class="col-sm-2">
+		                		<label for="type">Tipo de artículo <span class="span-required">(*)</span></label>
+		                		<select th:field="*{type}" id="item-type" name="state">
+		                			<option th:each="type : ${types}" th:value="${type}" th:text="${type.readValue}"></option>
+		                		</select>
+                			</div>
+                			<div class="col-sm-2">
+			                	<label for="price">Precio <span class="span-required">(*)</span></label>
+			                	<div class="input-group"> 
+       								<input id="item-price" name="price" style="text-align:right" type="number" min="0" step="0.01" lang="es" data-number-to-fixed="2" data-number-stepfactor="100" required/>
+							        <span class="input-group-addon">€</span>
+							    </div>
+			                </div>
+		                </div>
+		                <div class="row">
+		                	<div class="col-sm-12">
+		                		<label for="description">Descripción <span class="span-required">(*)</span></label>
+			                	<textarea th:field="*{description}" rows="4" id="description" name="description" placeholder="Descripción de tu artículo"  required></textarea>
+			                </div>
+		                </div>
+		                <div class="row">
+                			<div class="col-sm-4">
+		                		<label for="brand"> Marca <span class="span-required">(*)</span></label>
+			                	<input th:field="*{brand}" type="text" id="brand" name="brand" size="30" placeholder="Marca del artículo"  required>
+		                	</div>
+		                	<div class="col-sm-2">
+		                		<label for="itemYear"> Año <span class="span-required">(*)</span></label>
+			                	<input th:field="*{itemYear}" min="0" step="1" type="number" id="itemYear" name="itemYear" placeholder="Año"  required>
+		                	</div>
+	                	</div> 
+	                	<div class="row">
+	                		<div class="col-sm-3">
+                				<label for="material"> Material </label>
+     							<input  th:field="*{material}" type="text" id="material" name="material"  placeholder="Material del artículo">
+                			</div>
+                			<div class="col-sm-2">
+                				<label for="itemSize"> Talla <span class="span-required">(*)</span></label>
+     							<input  th:field="*{itemSize}" min="0" step="1" type="number" id="itemSize" name="itemSize"  placeholder="Talla (número)" required>
+                			</div>
+                			<div class="col-sm-2">
+                				<label for="sizeCountry"> Tallaje </label>
+                				<select id="sizeCountry" name="sizeCountry">
+		                			<option value="EU">EU</option>
+		                		</select>
+                			</div>
+	                	</div>
+	                	
+	                	
+		                <div class="row">
+		                	<div  class="col-sm-12">
+		               			<label style="padding-bottom:1%;" for="file-input"> Imágenes </label>
+	              	  		  
+							    <div id="drop_zone">
+							    	<div id="drop_zone_intermediate">
+								    	<span class="row"><i class="fas fa-cloud-upload-alt upload-icon"></i></span>
+								    	<header style="color:black;">¡Arrastra y suelta tus imágenes aquí!</header>
+								    </div>
+							    	<div id="resources-added"></div>
+							    	<!-- <span class="row"><input onclick="$('#file-input').click()" type="button" name="button" class="button" value="Seleccionar"></span> -->
+							    	<input class="hide" type="file" id="file-input" accept="image/*" name="files" multiple>
+							    </div>
+
+							 </div>
+		                </div>
+		                <div class="row">
+		                	<div class="col-sm-12">
+		                		
+		                	</div>
+		                </div>
+		               	<div class="clear"></div>
+		                <div class="row">
+		               	 	<div class="col-sm-12" style="text-align:center">
+		                		<input type="submit" name="button" class="submit-btn" value="Crear Anuncio">
+							</div>
+						</div>
+						
+					</form>
+		            <hr/>
+			    </div>  
+			</div>
+			      
+	  	</div>
+	</div>
+	<footer th:include="fragments/footer" class="footer"></footer>
+	<div th:include="fragments/scripts"></div>
+</body>
+</html>

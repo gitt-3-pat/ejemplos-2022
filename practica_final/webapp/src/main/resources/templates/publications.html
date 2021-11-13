@@ -1,0 +1,35 @@
+<!DOCTYPE html><html xmlns:th="http://www.thymeleaf.org" lang="es"><head th:include="fragments/head"></head>
+<body>
+<div id="box-mobile-menu" class="box-mobile-menu full-height full-width">
+	<div class="box-inner">
+		<span class="close-menu"><span class="icon pe-7s-close"></span></span>
+	</div>
+</div>
+	<div id="header-ontop" class="is-sticky"></div>	<!-- BEGIN HEADER INCLUDE -->	<header th:include="fragments/header" id="header" class="header style5"></header>	<!-- END HEADER -->
+    <div class="main-container no-sidebar">
+        <div class="container">
+            <div class="main-content">
+                <div style="text-align:center" class="page-title">
+                    <h3>Mis anuncios</h3>
+                </div>
+                <div class="row" id="wishlist-body">
+                    <div th:if="${publications.size() != 0}" class="col-sm-12 col-md-12">
+                        <table class="shop_table cart">                        	<thead>                        		<tr>                        			<td class="col-sm-1 col-md-1">Producto</td>                        			<td class="col-sm-1 col-md-1">Referencia</td>                        			<td class="col-sm-2 col-md-2">Precio publicación</td>                        			<td class="col-sm-2 col-md-2">Estado</td>                        			<td class="col-sm-3 col-md-3">Opciones</td>                        		</tr>                        	</thead>
+                            <tbody>
+                                <tr th:each="item : ${publications}">
+                                    <td class="col-sm-1 col-md-1 product-thumbnail"><a target="_blank" th:href="@{'/products/'+${item.id}}"><img th:src="@{'/products/' +${item.id} +'/image/'+ ${item.images[0].id}}" alt=""></a></td>
+                                    <td class="col-sm-1 col-md-1 product-name"><a style="margin-left:10px" target="_blank" th:href="@{'/products/'+${item.id}}" th:text="${item.id}"></a></td>
+                                    <td class="col-sm-2 col-md-2" th:text="${#numbers.formatDecimal(item.price, 0, 'POINT', 2, 'COMMA') + '€'}"></td>									
+                                    <td class="col-sm-2 col-md-2" th:text="${item.itemState.getReadValue()}"></td>
+                                    <td class="col-sm-3 col-md-3" th:if="${item.itemState.name() == 'AVAILABLE'}" ><a style="margin-left:5px" th:attr="data-id=${item.id}" class="button btn-delete-product-pre" href="#" >Eliminar</a></td>									<td class="col-sm-3 col-md-3" th:if="${item.itemState.name() == 'PENDING'}" ><a style="margin-left:5px" th:attr="data-id=${item.id}" class="button btn-accept-pre" href="#" >Aceptar</a><a style="margin-left:5px" th:attr="data-id=${item.id}" class="button btn-decline-pre" href="#" >Rechazar</a></td>																		<td class="col-sm-3 col-md-3" th:if="${item.itemState.name() == 'PRE_CONFIRMED'}" ><a style="margin-left:5px" th:attr="data-id=${item.id}" class="button btn-pre-confirmed" th:href="@{'/products/'+${item.id}+'/complete-shipping-details'}" >Completar datos de envío</a></td>									<td class="col-sm-3 col-md-3" th:if="${item.itemState.name() == 'CONFIRMED'}" ><a th:if="${item.order.orderInfo?.shippingLabel}" style="margin-left:5px" th:attr="data-id=${item.id}" class="button btn-download-label" th:href="@{'/products/'+${item.id}+'/download-label'}" >Descargar etiqueta</a><p th:if="!${item.order.orderInfo?.shippingLabel}">--</p></td>
+                                </tr>
+
+                            </tbody>
+                        </table>                        <div th:if="${publications.size() == 0}" class="text-center page-404">				             <h2 class="title">No ha publicado ningún artículo aún.</h2>				             <br/>				             <a class="button" th:href="@{/publish}">Publicar ahora</a>								        </div>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 	<footer th:include="fragments/footer" class="footer"></footer>	<div th:include="fragments/scripts"></div>
+</body>
+</html>

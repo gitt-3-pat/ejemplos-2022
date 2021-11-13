@@ -1,0 +1,134 @@
+
+<div class="row">
+
+	<div class="main-content col-sm-8 col-md-9">
+
+		<div class="shop-top">
+
+			<div class="shop-top-left">
+
+				<div class="breadcrumbs">
+
+                    <a th:href="@{/home}">Home</a>
+
+                    <span th:text="${breadCrumb}">Category</span>
+
+                </div>
+
+			</div>
+
+			<div class="shop-top-right">
+
+				<span class="woocommerce-result-count" th:text="${'Mostrando '+ (!items.isEmpty() ? items.size() : 0)+ ' resultados' }"></span>
+			
+				<div th:if="${!items.isEmpty()}" class="orderby-wapper">
+                   	<select id="order-by" class="orderby">
+						<option value="">Ordenar por...</option>
+                        <option value="price-desc">Precio: mayor a menor</option>
+                        <option value="price-asc">Precio: menor a mayor</option>
+                    </select>
+				</div>
+                       
+
+			</div>
+
+		</div>
+
+		<ul class="product-list-grid desktop-columns-3 tablet-columns-3 mobile-columns-1 row flex-flow">
+
+			<li th:if="${items.size > 0}" class="product-item col-sm-4" th:each="item : ${items}">
+				
+				<div class="product-inner">
+
+					<div class="product-thumb has-back-image">
+
+						<a th:href="@{'/products/'+${item.id}}">
+							<img class="img-list" th:if="${item.images?.size > 0}" th:src="@{'/products/' +${item.id} +'/image/'+ ${item.images[0].id}}" alt="">
+							<img class="img-list" th:if="${item.images?.size == 0}" th:src="@{/images/products/10.jpg}" alt="">
+						</a>
+
+                         <a th:if="${item.images?.size > 1}" class="back-image" th:href="@{'/products/'+${item.id}}">
+                         	<img class="img-list" th:src="@{'/products/' +${item.id} +'/image/'+ ${item.images[1].id}}" alt="">
+                         </a>
+
+						<div class="gorup-button">
+
+							<a href="#" class="wishlist add-wishlist" th:attr="data-id=${item.id}"><i class="fa fa-heart"></i></a>
+
+							<a href="#" class="compare"><i class="fa fa-exchange"></i></a>
+
+							<a href="#" class="quick-view"><i class="fa fa-search"></i></a>
+
+						</div>
+
+					</div>
+
+					<div class="product-info">
+
+						<h3 class="product-name"><a href="#" th:text="${item.description}">Desc</a></h3>
+
+						<span class="price">
+
+							<ins th:text="${#numbers.formatDecimal(item.price, 0, 'POINT', 2, 'COMMA') + ' €'}"></ins>
+
+
+						</span>
+
+						<a th:attr="data-id=${item.id}" class="button btn-buyout" href="#">Comprar</a>
+
+					</div>
+
+				
+				</div>
+			</li>
+
+		</ul>
+		<div th:if="${items.isEmpty()}" class="text-center page-404">
+
+            <h2 class="title">No existen productos</h2>
+
+            <p>Lo sentimos, no hemos encontrado el producto que buscaba, pruebe otra búsqueda.</p>
+
+            
+
+        </div>
+
+		
+
+		</div>
+			<div th:if="${!items.isEmpty()}" class="col-sm-4 col-md-3 sidebar"> 
+				<div  class="widget" ><h1 class="widget-title" style="font-size:20px"><b>Filtros</b></h1></a></div>
+				<div class="widget widget_product_tag_cloud style2">
+                    <h2 class="widget-title">Marcas</h2>
+                    <div class="tagcloud">
+                    	<a th:each="brand : ${brands}"><span data-filter="brand-filter" th:text="${brand}"></span></a>
+                    </div>
+                </div>
+      
+                 <!-- By color -->
+                <div class="widget widget_fillter_size">
+                    <h2 class="widget-title">Tallas</h2>
+                    <div class="inner">
+                    	<a th:each="itemSize : ${itemSizes}"><span data-filter="size-filter" th:text="${itemSize}"></span></a>
+                    </div>
+                </div>
+                 <!-- ./By color -->
+
+               
+                <!-- Filter price -->
+                <div th:if="${personStats}" class="widget widget_price_filter">
+                    <h2 class="widget-title">Rango de precios</h2>
+                    <div class="weight_slider_wrapper">
+                        <div class="amount-range-price" th:text="${'Precio: '+minPrice+'€ - '+maxPrice+'€'}"></div>
+                        <div data-label-result="Precio" th:attr="data-min=${minPrice},data-max=${maxPrice},data-value-min=${minPrice},data-value-max=${maxPrice}" data-unit="€" class="slider-range-price" ></div>
+                    </div>
+                </div>
+                <!-- ./Filter price -->
+                <hr/>
+                <div>
+                	<button class="button btn-filter">Filtrar</button><button style="float:right" class="button btn-clear-filter">Reestablecer</button>
+                </div>
+                <!-- ./Product tags -->
+        	</div>
+
+</div>

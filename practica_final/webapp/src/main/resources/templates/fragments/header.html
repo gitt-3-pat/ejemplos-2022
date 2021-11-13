@@ -1,0 +1,94 @@
+<div class="top-header">
+	<div class="container">
+		<div class="logo">
+			<a th:href="@{/home}">Spring Boot & Thymeleaf</a>
+		</div>
+		<h4 style="text-align:center;margin-top:1%"><i>e-commerce</i></h4>
+	</div>
+</div>
+<div class="main-header">
+	<div class="container">
+		<div class="main-menu-wapper">
+			<div class="row">
+				<div class="col-xs-2 col-sm-8 col-md-8">
+					<span class="mobile-navigation"><i class="fa fa-bars"></i></span>
+					<ul class="boutique-nav main-menu clone-main-menu">                                      
+						<li class="menu-item-has-children item-megamenu">
+							<a th:href="@{/clothes}">Ropa</a>
+							<span class="arow"></span>
+                            <ul class="sub-menu">
+                                <li><a th:href="@{/clothes}">Toda la ropa</a></li>
+                                <li><a th:href="@{/clothes/shirts}">Camisetas</a></li>
+                                <li><a th:href="@{/clothes/pants}">Pantalones</a></li>
+                                <li><a th:href="@{/clothes/dresses}">Vestidos</a></li>
+                            </ul>
+						</li>
+						<li class="menu-item-has-children item-megamenu">
+							<a th:href="@{/accessories}">Accesorios</a>
+							<span class="arow"></span>
+                            <ul class="sub-menu">
+                             	<li><a th:href="@{/accessories/shoes}">Zapatos</a></li>
+                                <li><a th:href="@{/accessories/coats}">Abrigos</a></li>
+								<li><a th:href="@{/accessories/digital-files}">Ficheros Digitales</a></li>
+								<li><a th:href="@{/accessories/miscellaneous}">Misceláneos</a></li>
+                            </ul>
+						</li>
+                        <li class="menu-item-has-children item-megamenu">
+                            <a th:href="@{/publish}">Crea tu anuncio</a>
+                            <span class="arow"></span>
+                            <ul class="sub-menu">
+                                <li><a th:href="@{/publish}">Publica tu artículo</a></li>
+                            </ul>
+                        </li>
+						<li class="menu-item-has-children">
+							<a th:href="@{/contact}">Contacto</a>
+							<ul class="sub-menu">
+								<li><a th:href="@{/contact}">Contacta con nosotros</a></li>
+							</ul>
+						</li>
+					</ul>
+					
+				</div>
+				<div class="col-xs-10 col-sm-4 col-md-4">
+					<div class="box-control">
+						<!-- <form  class="box-search">
+							<div class="inner">
+								<input type="text" class="search" placeholder="Search here...">
+								<button class="button-search"><span class="pe-7s-search"></span></button>
+							</div>
+						</form> -->
+						<div id="wishlist-menu" class="mini-cart wishlist-menu" th:include="fragments/wishlist-menu">
+							
+						</div>
+						<div class="mini-cart" >
+							<a  class="cart-link" th:href="@{/shopping-cart}"><span style="margin-top:5px;font-size:20px" class="icon pe-7s-cart"></span></a>
+						</div>
+						<div class="box-settings">
+                            <span class="icon pe-7s-user"></span>
+                            <div class="settings-wrapper ">
+                                <div class="setting-content">
+                                    <div class="setting-option">
+                                    	<h4 sec:authorize="isAuthenticated()" th:text="${'¡Hola ' +#authentication.principal.shortName + '!'}" style="font-family: 'Montserrat';"> </h4>
+                                        <ul>
+                                            <li><a th:href="@{/wishlist}"><i class="icon-heart icons"></i><span>Mi lista de deseos</span></a></li>
+                                            <li sec:authorize="isAuthenticated()"><a th:href="@{/my-publications}"><i class="icon-heart icons"></i><span>Mis anuncios</span></a></li>
+                                            <li sec:authorize="isAuthenticated()"><a th:href="@{/my-buyouts}"><i class="icon-heart icons"></i><span>Mis compras</span></a></li>
+                                            <li sec:authorize="isAuthenticated()"><a th:href="@{/my-sellings}"><i class="icon-user icons"></i><span> Mis ventas</span></a></li>
+                                            <li sec:authorize="isAuthenticated()"><a th:href="@{/my-account}"><i class="icon-user icons"></i><span> Mis datos</span></a></li>
+                                            <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/orders/labels}"><i class="icon-user icons"></i><span> Asignar etiquetas</span></a></li>
+                                            <li sec:authorize="isAnonymous()"><a th:href="@{/login}"><i class="icon-lock-open icons"></i><span>Iniciar Sesión</span></a></li>
+                                            <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}"><i class="icon-lock-open icons"></i><span>Cerrar sesión</span></a></li>
+                                        </ul>
+                                    </div>
+                            	</div>
+                        	</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	var baseURL = "[[@{/}]]";
+</script>

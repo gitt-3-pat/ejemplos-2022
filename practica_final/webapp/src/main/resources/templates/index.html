@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head th:include="fragments/head"></head>
+<style>
+
+	.product-item{
+		background-color: white;
+	}
+</style>
+<body class="home">
+	<div id="box-mobile-menu" class="box-mobile-menu full-height full-width">
+		<div class="box-inner">
+			<span class="close-menu"><span class="icon pe-7s-close"></span></span>
+		</div>
+	</div>
+	<div id="header-ontop" class="is-sticky"></div>
+	<!-- BEGIN HEADER INCLUDE -->
+	<header th:include="fragments/header" id="header" class="header style5"></header>
+	<!-- END HEADER -->
+	<!-- Home slide -->
+		<div class="container home-slide1 owl-carousel nav-style4 nav-center-center" data-animateout="fadeOut" data-animatein="fadeIn" data-items="1" data-nav="true" data-dots="true" data-loop="true" data-autoplay="true" data-margin="0">
+			<a th:href="@{/publish}"><img th:src="@{/images/walpp3.jpeg}" alt=""></a>
+			<a th:href="@{/publish}"><img th:src="@{/images/walpp2.jpeg}" alt=""></a>
+		</div>
+		<!-- ./Home slide -->
+	<div class="container">
+		<div class="margin-top-60">
+			<div class="section-title style2 text-center">
+				<h3>Destacados</h3>
+				<span class="driver"></span>
+			</div>
+			<ul class="slide-product owl-carousel nav-center-outside nav-style2" data-nav="true" data-autoplay="false" data-dots="false" data-loop="true" data-margin="30" data-responsive='{"0":{"items":1},"600":{"items":2},"1000":{"items":4}}'>
+				<li th:each="item : ${items}" class="product-item">
+				<div class="product-inner">
+
+					<div class="product-thumb has-back-image">
+
+						<a th:href="@{'/products/'+${item.id}}">
+							<img class="img-list" th:if="${item.images?.size > 0}" th:src="@{'/products/' +${item.id} +'/image/'+ ${item.images[0].id}}" alt="">
+							<img class="img-list" th:if="${item.images?.size == 0}" th:src="@{/images/products/10.jpg}" alt="">
+						</a>
+
+                         <a th:if="${item.images?.size > 1}" class="back-image" th:href="@{'/products/'+${item.id}}">
+                         	<img class="img-list" th:src="@{'/products/' +${item.id} +'/image/'+ ${item.images[1].id}}" alt="">
+                         </a>
+
+						<div class="gorup-button">
+
+							<a href="#" class="wishlist add-wishlist" th:attr="data-id=${item.id}"><i class="fa fa-heart"></i></a>
+
+							<a href="#" class="compare"><i class="fa fa-exchange"></i></a>
+
+							<a href="#" class="quick-view"><i class="fa fa-search"></i></a>
+
+						</div>
+
+					</div>
+
+					<div class="product-info">
+
+						<h3 class="product-name"><a href="#" th:text="${item.description}">Desc</a></h3>
+
+						<span class="price">
+
+							<ins th:text="${#numbers.formatDecimal(item.price, 0, 'POINT', 2, 'COMMA') + ' €'}"></ins>
+
+
+						</span>
+
+						<a href="#" class="button">COMPRAR</a>
+
+					</div>
+
+				
+				</div>
+				</li>
+			</ul>
+		</div>
+		<div  th:include="fragments/pre_footer" class="margin-top-60"></div>     
+	</div>
+	<footer th:include="fragments/footer" class="footer"></footer>
+	<div th:include="fragments/scripts"></div>
+</body>
+</html>

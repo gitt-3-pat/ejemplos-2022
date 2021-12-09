@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Basic Form</title>
+    <script type="text/javascript">
+        function validateForm() {
+            try {
+                var inputValue1 = document.getElementsByName("input1")[0].value;
+                var inputValue2 = document.getElementsByName("input2")[0].value;
+                console.log(inputValue1);
+                console.log(inputValue2);
+                if(inputValue1 != inputValue2) {
+                    return false;
+                }
+            } catch (err) {
+                console.error(err.message);
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <form action="/api/form" method="POST" onsubmit="return validateForm()">
+        <input type="text" name="input1" minlength="5" maxlength="10" pattern="[a-zA-Z0-9]+" required />
+        <input type="text" name="input2" minlength="5" maxlength="10" pattern="[a-zA-Z0-9]+" required />
+        <button type="submit">Enviar</button>
+    </form>
+</body>
+</html>

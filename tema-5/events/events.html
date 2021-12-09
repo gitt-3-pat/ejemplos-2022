@@ -1,0 +1,74 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Javascript Core</title>
+    <style>
+    html {
+      background-color: white;
+    }
+
+    fieldset {
+      border: 0;
+    }
+
+    .form {
+      background-color: lightblue;
+      margin: auto;
+      margin-top: 5%;
+      width: 50%;
+      text-align: center;
+      border-radius: 5px;
+      box-shadow: 5px 10px #888888;
+
+    }
+
+    .form-group {
+      clear: both;
+    }
+
+    .login-btn {
+      margin: 2% 0 2% 0;
+      background-color: lightgrey;
+    }
+  </style>
+</head>
+<body>
+<div class="form">
+    <form name="login"  id="form" action="/login" method="post">
+        <fieldset>
+            <div class="form-group">
+                <label class="form-field" for="user">Usuario</label>
+            </div>
+            <div class="form-group">
+                <input class="form-field" id="user" type="input"/>
+            </div>
+            <div class="form-group">
+                <label class="form-field" for="password">Password</label>
+            </div>
+            <div class="form-group">
+                <input class="form-field" id="password" type="password"/>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="login-btn" value="Login"/>
+            </div>
+        </fieldset>
+    </form>
+</div>
+<script>
+    const password = document.getElementById("password");
+
+    //Accediendo al valor de password a través del objeto Event
+    password.addEventListener("keypress", function (event) {
+      console.log("La contraseña es " + event.target.value)
+    });
+    const form = document.getElementById("form");
+    //Parar el flujo natural de submit
+    form.addEventListener("submit", function(e){
+      e.preventDefault();
+      console.log("We don't want to submit this form");
+      return false;
+   });
+
+  </script>
+</body>
+</html>

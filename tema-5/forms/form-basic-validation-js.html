@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+  <style>
+    html {
+      background-color: white;
+    }
+
+    fieldset {
+      border: 0;
+    }
+
+    .form {
+      background-color: lightblue;
+      margin: auto;
+      margin-top: 5%;
+      width: 50%;
+      text-align: center;
+      border-radius: 5px;
+      box-shadow: 5px 10px #888888;
+
+    }
+
+    .form-group {
+      clear: both;
+    }
+
+    .login-btn {
+      margin: 2% 0 2% 0;
+      background-color: lightgrey;
+    }
+  </style>
+</head>
+<body>
+    <div class="form">
+        <form name="login"  id="form" action="/login" method="post" onsubmit="return submitForm()">
+         <fieldset>
+            <div class="form-group">
+              <label class="form-field" for="user">Usuario</label>
+            </div>
+            <div class="form-group">
+              <input required minlength="5" class="form-field" id="user" type="input"/>
+            </div>
+             <div class="form-group">
+              <label class="form-field" for="password">Password</label>
+             </div>
+            <div class="form-group">
+              <input required title="Must contain at least: one uppercase letter, one lowercase letter and a number or symbol. Password must be between 10 and 20 characters."
+                     pattern="(?=^.{10,128}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" class="form-field" id="password" type="password"/>
+             </div>
+            <div class="form-group">
+              <input type="submit" class="login-btn" value="Login"/>
+            </div>
+          </fieldset>
+        </form>
+    </div>
+    <div class="form">
+        <form id="form2" action="/alta-dni" method="post" enctype="multipart/form-data" >
+         <fieldset>
+           <label class="form-field" for="dni-text">Número DNI</label>
+           <input required minlength="5" class="form-field" id="dni-text" type="text"/>
+           <label class="form-field" for="dni">DNI escaneado</label>
+           <input required id="dni" type="file"/>
+          </fieldset>
+        </form>
+    </div>
+  <script>
+    const user = document.getElementById("user");
+    const password = document.getElementById("password");
+    user.addEventListener("input", function (event) {
+      if (user.validity.tooShort) {
+        user.setCustomValidity("Introduzca un nombre de usuario con al menos 5 caracteres");
+      } else {
+        user.setCustomValidity("");
+      }
+    });
+    password.addEventListener("input", function (event) {
+      if (password.validity.patternMismatch) {
+        password.setCustomValidity("Introduzca una contraseña de entre 10 y 20 caracteres alfanuméricos.");
+      } else {
+        password.setCustomValidity("");
+      }
+    });
+
+    function submitForm (){
+      document.login.submit();
+    }
+  </script>
+</body>
+</html>

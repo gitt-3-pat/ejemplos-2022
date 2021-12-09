@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Grid Template · Bootstrap v5.0</title>
+
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Top navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav me-auto mb-2 mb-md-0">
+        <li class="nav-item active">
+          <a class="nav-link" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>q
+  <main>
+    <div class="container">
+      <!-- Header -->
+      <div class="row">
+        <div class="col-12">
+          1 of 1
+          <br />
+          <h1>h1. Bootstrap heading</h1>
+          <h2>h2. Bootstrap heading</h2>
+          <h3>h3. Bootstrap heading</h3>
+          <h4>h4. Bootstrap heading</h4>
+          <h5>h5. Bootstrap heading</h5>
+          <h6>h6. Bootstrap heading</h6>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper mollis nunc, id faucibus diam pharetra non. Morbi porta eros eget malesuada ultrices. Quisque pharetra convallis commodo. Vivamus justo quam, ullamcorper non risus nec, interdum posuere nisi. Proin ultrices magna faucibus euismod scelerisque. Quisque non massa volutpat, commodo ipsum et, mattis elit. Nullam auctor eu mi feugiat tempus. Donec vel nunc vitae nisl ultrices efficitur sit amet ac eros. Aliquam tempus leo sapien, non sagittis turpis molestie eget. Aliquam suscipit, tortor nec commodo finibus, eros dui fringilla mi, sed blandit arcu nisl vel urna. Duis id arcu maximus, volutpat justo in, tempus arcu. Morbi quis molestie mauris. Aenean quis faucibus ipsum. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+          </p>
+        </div>
+      </div>
+      <!-- Main content -->
+      <div class="row">
+        <div class="col-4">
+          1 of 2
+          <br />
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper mollis nunc, id faucibus diam pharetra non. Morbi porta eros eget malesuada ultrices. Quisque pharetra convallis commodo. Vivamus justo quam, ullamcorper non risus nec, interdum posuere nisi. Proin ultrices magna faucibus euismod scelerisque. Quisque non massa volutpat, commodo ipsum et, mattis elit. Nullam auctor eu mi feugiat tempus. Donec vel nunc vitae nisl ultrices efficitur sit amet ac eros. Aliquam tempus leo sapien, non sagittis turpis molestie eget. Aliquam suscipit, tortor nec commodo finibus, eros dui fringilla mi, sed blandit arcu nisl vel urna. Duis id arcu maximus, volutpat justo in, tempus arcu. Morbi quis molestie mauris. Aenean quis faucibus ipsum. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+          </p>
+        </div>
+        <div class="col-8">
+          2 of 2
+          <br />
+          <!-- Form -->
+          <form>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"><!-- disabled -->
+              <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Password</label>
+              <input type="password" class="form-control" id="exampleInputPassword1">
+            </div>
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+          <hr />
+          <!-- form -->
+          <form>
+            <fieldset disabled>
+              <legend>Disabled fieldset example</legend>
+              <div class="mb-3">
+                <label for="disabledTextInput" class="form-label">Disabled input</label>
+                <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input">
+              </div>
+              <div class="mb-3">
+                <label for="disabledSelect" class="form-label">Disabled select menu</label>
+                <select id="disabledSelect" class="form-select">
+                  <option>Disabled select</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="disabledFieldsetCheck" disabled>
+                  <label class="form-check-label" for="disabledFieldsetCheck">
+                    Can't check this
+                  </label>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </fieldset>
+          </form>
+          <!-- -->
+          <hr />
+          <form action="upload.php" method="post" enctype="multipart/form-data">
+            Select image to upload:
+            <input type="file" name="fileToUpload" id="fileToUpload">
+            <input type="submit" value="Upload Image" name="submit">
+          </form>
+          <hr />
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper mollis nunc, id faucibus diam pharetra non. Morbi porta eros eget malesuada ultrices. Quisque pharetra convallis commodo. Vivamus justo quam, ullamcorper non risus nec, interdum posuere nisi. Proin ultrices magna faucibus euismod scelerisque. Quisque non massa volutpat, commodo ipsum et, mattis elit. Nullam auctor eu mi feugiat tempus. Donec vel nunc vitae nisl ultrices efficitur sit amet ac eros. Aliquam tempus leo sapien, non sagittis turpis molestie eget. Aliquam suscipit, tortor nec commodo finibus, eros dui fringilla mi, sed blandit arcu nisl vel urna. Duis id arcu maximus, volutpat justo in, tempus arcu. Morbi quis molestie mauris. Aenean quis faucibus ipsum. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+          </p>
+          <p>
+            Curabitur pharetra eget nibh in tincidunt. Vestibulum vitae ante pharetra, mattis tortor id, accumsan felis. Pellentesque a urna ultrices, pharetra justo quis, congue urna. Nullam sagittis, nunc vel interdum scelerisque, ante sapien pellentesque mauris, lobortis iaculis nibh turpis ac elit. Curabitur ac lacus luctus, auctor turpis sit amet, ornare turpis. Praesent sed turpis neque. Suspendisse at fringilla nisl. Sed at suscipit sem. Morbi justo tellus, rhoncus nec eros vitae, sollicitudin pretium metus. Nullam rutrum ut mauris et tincidunt. Etiam in tellus venenatis, sodales quam et, consequat nibh. Morbi elementum lectus sollicitudin turpis faucibus, ut volutpat diam venenatis. Sed maximus lorem dui, eget elementum ante rutrum at. Proin ultrices, lacus a sollicitudin gravida, ipsum nisl aliquam massa, sit amet imperdiet diam eros quis risus. Sed nec egestas nibh.
+          </p>
+          <p>
+            In auctor velit nec hendrerit iaculis. Nulla a magna varius, aliquam velit vitae, imperdiet tortor. Phasellus velit nisi, sollicitudin quis nisl at, cursus fermentum lorem. Praesent eu justo feugiat, dictum ex sit amet, blandit orci. Aenean eu lobortis massa. Donec interdum, ipsum vitae tempus scelerisque, sem sapien pellentesque neque, ac mollis eros tellus eget nisl. Suspendisse nec blandit tortor. Vivamus suscipit, neque sed tempor efficitur, felis velit dapibus erat, laoreet efficitur nisl nisi eget nunc. Integer in justo ac quam viverra commodo. Nam volutpat neque non nunc rhoncus dictum.
+          </p>
+        </div>
+      </div>
+      <!-- Footer -->
+      <div class="row">
+        <div class="col-12">
+          1 of 1
+          <br />
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper mollis nunc, id faucibus diam pharetra non. Morbi porta eros eget malesuada ultrices. Quisque pharetra convallis commodo. Vivamus justo quam, ullamcorper non risus nec, interdum posuere nisi. Proin ultrices magna faucibus euismod scelerisque. Quisque non massa volutpat, commodo ipsum et, mattis elit. Nullam auctor eu mi feugiat tempus. Donec vel nunc vitae nisl ultrices efficitur sit amet ac eros. Aliquam tempus leo sapien, non sagittis turpis molestie eget. Aliquam suscipit, tortor nec commodo finibus, eros dui fringilla mi, sed blandit arcu nisl vel urna. Duis id arcu maximus, volutpat justo in, tempus arcu. Morbi quis molestie mauris. Aenean quis faucibus ipsum. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

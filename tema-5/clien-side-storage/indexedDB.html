@@ -1,0 +1,176 @@
+<html>
+  <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  </head>
+
+  <body>
+    <div class="container ">
+      <div class="input-group">
+        <select id="select-color" class="form-select" aria-label="Select your color preference">
+          <option value="lightblue">Blue</option>
+          <option value="green">Green</option>
+          <option value="brown">Brown</option>
+        </select>
+        <button class="btn btn-outline-secondary btn-light" type="button" onclick="addUserColorPreference()">Refresh preference</button>
+      </div>
+      <div class="input-group mb-3">
+        <input type="file" class="form-control" id="image" accept=".png,.jpeg,.jpg">
+        <button class="btn btn-outline-secondary btn-light" type="button" onclick="storePreferredImage()">Refresh preference</button>
+      </div>
+    </div>
+    <div class="container text-center" id="img-container">
+
+    </div>
+  </body>
+
+</html>
+
+
+<script>
+
+  // Crea una instancia de un objeto db para que almacenemos la base de datos abierta
+  let db;
+
+  window.onload = function() {
+    // Abre nuestra base de datos; se crea si aún no existe: user_preferences version 2
+    let request = window.indexedDB.open('user_preferences', 1);
+
+    request.onerror = function(e) {
+      console.log('Error en la base de datos');
+    };
+    // controlador onsuccess significa que la base de datos se abrió correctamente
+    request.onsuccess = function() {
+      console.log('Base de datos abierta con éxito');
+      // Almacena el objeto de base de datos abierto en la variable db
+      db = request.result;
+      //Refrescamos colores
+      refreshUserColorPreference();
+      refreshUserImagePreferred();
+    };
+    // Configura las tablas de la base de datos si esto aún no se ha hecho
+    request.onupgradeneeded = function(e) {
+      // Toma una referencia a la base de datos abierta
+      let db = e.target.result;
+      // Crea un objectStore para almacenar nuestras preferencias (básicamente como una sola tabla)
+      // incluyendo una clave de incremento automático
+      //tabla preferencias color
+      let objectStore = db.createObjectStore('colors', {keyPath: 'id', autoIncrement: true});
+      //Creamos los indices de la DB
+      objectStore.createIndex('color_favorito', 'color_favorito', { unique: false });
+      objectStore = db.createObjectStore('images', {keyPath: 'id', autoIncrement: true});
+      objectStore.createIndex('name', 'name', { unique: false });
+      console.log('Configuración de la base de datos completa');
+    };
+
+
+  };
+
+  function addUserColorPreference(){
+    deleteColorsFromDB();
+    //almacenamiento de Datos
+    let preference = {"color_favorito": document.getElementById("select-color").value}
+    // abre una transacción de base de datos de lectura/escritura, lista para agregar los datos
+    let transaction = db.transaction(['colors'], 'readwrite');
+    // llama a un almacén de objetos que ya se ha agregado a la base de datos
+    let objectStore = transaction.objectStore('colors');
+
+    let request =  objectStore.add(preference);
+    request.onsuccess = function() {
+      console.log("operación completada con éxito")
+      refreshUserColorPreference()
+    };
+    request.oncomplete = function() {
+       console.log("Transacción completada")
+     }
+    request.onerror = function() {
+      console.log("Algo fue mal")
+    }
+  }
+
+  function deleteColorsFromDB(){
+    //Borrado de elementos
+    let request = db.transaction(['colors'], 'readwrite').objectStore('colors').clear();
+    request.onsuccess = (e) => {
+      console.log("color de usuario borrada")
+    }
+  }
+
+  function deleteImagesFromDB(){
+    let requestImage = db.transaction(['images'], 'readwrite').objectStore('images').clear();
+    requestImage.onsuccess = (e) => {
+      console.log("imagen de usuario borrada")
+    }
+  }
+
+  function refreshUserColorPreference(){
+    //lectura de Datos
+    // Abre el almacén de objetos y luego obtiene un cursor, que recorre todos los
+    // diferentes elementos de datos en el almacén
+    let objectStore = db.transaction('colors').objectStore('colors');
+
+    let cursor = objectStore.openCursor();
+     cursor.onsuccess=  (e) => {
+        // Obtiene una referencia al cursor
+        let cursor = e.target.result;
+        // Si todavía hay otro elemento de datos para iterar, sigue ejecutando este código
+        if(cursor) {
+          //obtenemos el valor del cursor actualicen
+          let value = cursor.value
+          //accedemos a la propiedad
+          console.log("El color favorito del usuario actual es " + value.color_favorito);
+          // Iterar al siguiente elemento del cursor
+          //cursor.continue();
+          document.getElementsByTagName("body")[0].style.backgroundColor = value.color_favorito;
+        }else{
+          console.log("No hay mas elementos")
+        }
+     }
+  }
+
+  function storePreferredImage(){
+    deleteImagesFromDB();
+    let image = {name : document.getElementById("image").files[0].name, blob : document.getElementById("image").files[0]}
+    let transaction = db.transaction(['images'], 'readwrite');
+    // llama a un almacén de objetos que ya se ha agregado a la base de datos
+    let objectStore = transaction.objectStore('images');
+
+    let request =  objectStore.add(image);
+    request.onsuccess = function() {
+      console.log("operación completada con éxito")
+      refreshUserImagePreferred()
+    };
+    request.oncomplete = function() {
+       console.log("Transacción completada")
+     }
+    request.onerror = function() {
+      console.log("Algo fue mal")
+    }
+  }
+
+  function refreshUserImagePreferred(){
+    //lectura de Datos
+    // Abre el almacén de objetos y luego obtiene un cursor, que recorre todos los
+    // diferentes elementos de datos en el almacén
+    let objectStore = db.transaction('images').objectStore('images');
+
+    let cursor = objectStore.openCursor();
+     cursor.onsuccess=  (e) => {
+        // Obtiene una referencia al cursor
+        let cursor = e.target.result;
+        // Si todavía hay otro elemento de datos para iterar, sigue ejecutando este código
+        if(cursor) {
+          //obtenemos el valor del cursor actualicen
+          let value = cursor.value
+          //accedemos a la imagen
+          console.log("La imagen favorita del usuario actual es " + value.name);
+          // Iterar al siguiente elemento del cursor
+          //cursor.continue();
+          var urlCreator = window.URL || window.webkitURL;
+          var imageUrl = urlCreator.createObjectURL(value.blob);
+          document.getElementById("img-container").innerHTML = `<img src="${imageUrl}" style="max-width: 20%" class="img-fluid rounded">`
+        }else{
+          console.log("No hay mas elementos")
+        }
+     }
+  }
+</script>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  background-color: DodgerBlue;
+  max-width: 55%;
+  border: 5px solid blue;
+}
+.flex-container > img {
+  background-color: white;
+max-width:100%;
+max-height:100%;
+}
+
+.flex-container > div {
+  background-color: #f1f1f1;
+  width: 100px;
+  margin: 10px;
+  text-align: center;
+  line-heigth: 75px;
+  font-size: 30px;
+}
+.flex-container > div:hover{
+  background-color: lightblue;
+  color: white;
+  cursor: pointer;
+
+}
+header, footer{
+  text-align: center;
+  border: 5px solid blue;
+}
+.main-container{
+  border: 5px solid red;
+  display: flex;
+
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Flexible Boxes</h1>
+</header>
+<div class="main-container">
+  <div class="flex-container">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+      <div>4</div>
+      <div>5</div>
+      <div>6</div>
+      <div>7</div>
+      <div>8</div>
+  </div>
+  <div class="flex-container">
+  <img src="https://www.comillas.edu/images/modulo_cabecera/logo-icai-site.png"/>
+  </div>
+</div>
+
+
+
+<footer>
+  Footer here
+</footer>
+</body>
+</html>

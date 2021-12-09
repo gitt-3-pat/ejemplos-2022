@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+    <title>Hello World</title>
+    <meta charset="utf-8">
+    <style>
+/* < a > elements with a title attribute */
+a[title] {
+    color: purple;
+}
+/* < a > elements with an href matching "https://example.org"
+a[href="https://example.org"] {
+    color: green;
+}
+/* < a > elements with an href containing "example" */
+a[href*="example"] {
+    font-size: 2em;
+}
+/* < a > elements with an href ending ".org" */
+a[href$=".com"] {
+    font-style: italic;
+}
+    </style>
+</head>
+<body>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Maecenas viverra turpis id pharetra accumsan.
+        Praesent et nibh non purus ultrices gravida sed id ligula.
+        Curabitur luctus, erat non rutrum accumsan, nibh nisi tempor odio,
+        finibus ultrices quam lectus ut elit. Donec molestie euismod nulla ut fermentum.
+    </p>
+    <a href="#">Link</a>
+    <ul>
+        <li><a href="" title="demo">Link</a></li>
+        <li><a href="https://example.org" title="demo">Link</a></li>
+        <li><a href="example" title="demo">Link</a></li>
+        <li><a href="https://as.com" title="demo">Link</a></li>
+    </ul>
+</body>
+</html>

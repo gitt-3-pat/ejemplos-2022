@@ -1,21 +1,0 @@
-<!DOCTYPE html><html xmlns:th="http://www.thymeleaf.org" lang="es"><head th:include="fragments/head"></head>
-<body>
-    <div id="box-mobile-menu" class="box-mobile-menu full-height full-width">
-    	<div class="box-inner">
-    		<span class="close-menu"><span class="icon pe-7s-close"></span></span>
-    	</div>
-    </div>
-    <div id="header-ontop" class="is-sticky"></div>
-    <!-- BEGIN HEADER INCLUDE -->	<header th:include="fragments/header" id="header" class="header style5"></header>	<!-- END HEADER -->
-    <div class="container">
-        <div class="text-center page-404">
-            <h1 class="heading">500</h1>
-            <h2 class="title">Ha ocurrido un error.</h2>
-            <p>Lo sentimos, no hemos podido procesar la petición correctamente.</p>
-            <a class="button" th:href="@{/home}">Ir al inicio</a>
-        </div>
-    </div>
-    
-	<footer th:include="fragments/footer" class="footer"></footer>	<div th:include="fragments/scripts"></div>
-</body>
-</html>

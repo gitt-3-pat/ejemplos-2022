@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Basic Form</title>
+    <script type="text/javascript">
+        function validateForm(object) {
+            return false;
+        }
+    </script>
+</head>
+<body>
+    <form action="/api/form" method="POST" onsubmit="return validateForm(this)">
+        <input type="text" name="input1" />
+        <button type="submit">Enviar</button>
+    </form>
+</body>
+</html>

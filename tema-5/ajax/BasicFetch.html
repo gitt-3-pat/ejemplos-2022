@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Basic Fetch & Vanilla AJAX</title>
+</head>
+<body>
+    <script type="text/javascript">
+        console.log("Fetch Example");
+        fetch('https://api.github.com/orgs/nodejs')
+        .then(response => response.json())
+        .then(data => {
+            console.log(data.twitter_username) // Prints result from `response.json()` in getRequest
+        })
+        .catch(error => console.error(error))
+    </script>
+    <script type="text/javascript">
+        console.log("Vanilla Ajax Example");
+        const request = new XMLHttpRequest()
+        request.open('GET', 'https://api.github.com/orgs/nodejs')
+        request.setRequestHeader('Content-Type', 'application/json')
+        request.onreadystatechange = function() {
+            //estado == 4 quiere decir que se ha completado
+            if(request.readyState === 4) {
+                //comprobamos el código de la respuesta HTTP
+                if(request.status === 200) {
+                    const backendOutput = JSON.parse(this.responseText)
+                    console.log(backendOutput);
+                } else {
+                    console.log(request.statusText);
+                }
+            }
+        }
+        request.send();
+    </script>
+</body>
+</html>

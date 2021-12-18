@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Basic Form</title>
+    <script type="text/javascript">
+        function validateForm() {
+            var inputValue = document.getElementsByName("input1")[0].value;
+            console.log(inputValue.length);
+            if(inputValue.length == 0) {
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <form action="/api/form" method="POST" onsubmit="return validateForm()">
+        <input type="text" name="input1" />
+        <button type="submit">Enviar</button>
+    </form>
+</body>
+</html>

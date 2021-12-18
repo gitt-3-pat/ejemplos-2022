@@ -1,0 +1,40 @@
+<html>
+  <!--Manipulando el atributo location-->
+  <script type="text/javascript">
+    //recarga síncrona de la página
+    window.location.reload()
+    location.reload();
+    //navegación a otra URL
+    window.location.href = "https://www.comillas.edu";
+    location.assign("https://www.comillas.edu");
+  </script>
+
+  <!--Submit de un formulario-->
+  <form id="form-login" action="/login" method="POST">
+    <label for="username">Username</label>
+    <input type="text" id="username" placeholder="username">
+    <label for="password">Password</label>
+    <input type="password" id="password" placeholder="password">
+  </form>
+  <script type="text/javascript">
+      document.getElementById("form-login").submit();
+  </script>
+
+  <!--AJAX-->
+  <script type="text/javascript">
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function() {
+      if(request.readyState === 4) {
+        if(request.status === 200) {
+          console.log(request.responseText);
+        } else {
+          console.log( request.status + ' ' + request.statusText;)
+        }
+      }
+    }
+    request.open('GET', '/api/status');
+    request.send();
+  </script>
+
+
+</html>

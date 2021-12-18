@@ -1,0 +1,8 @@
+//Set an authentication object
+var auth ={"token" :"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcmluY2lwYWwiOiJnYXNfbWFya2V0IiwiY2xpZW50SWQiOiJvbmVzYWl0cGxhdGZvcm0iLCJ1c2VyX25hbWUiOiJnYXNfbWFya2V0Iiwic2NvcGUiOlsib3BlbmlkIl0sIm5hbWUiOiJnYXNfbWFya2V0IiwiZXhwIjoxNjEyNjUzNTA1LCJncmFudFR5cGUiOiJwYXNzd29yZCIsInBhcmFtZXRlcnMiOnsidmVydGljYWwiOm51bGwsImdyYW50X3R5cGUiOiJwYXNzd29yZCIsInVzZXJuYW1lIjoiZ2FzX21hcmtldCJ9LCJhdXRob3JpdGllcyI6WyJST0xFX0RBVEFTQ0lFTlRJU1QiXSwianRpIjoiZDYzNTNiYjctOTM0NC00MzExLTk5MmItZjFiMDRkODZkODIwIiwiY2xpZW50X2lkIjoib25lc2FpdHBsYXRmb3JtIn0.2_dB1y73cCvqSwNpqlGS6yvdh-L9oJsOtXaGIf6CzXc"};
+//store
+localStorage.setItem('access_token', JSON.stringify(auth));
+sessionStorage.setItem('access_token', JSON.stringify(auth));
+//recuperamos el valor y pasamos de nuevo a objeto
+var auth = localStorage.getItem('access_token')
+auth = JSON.parse(auth);

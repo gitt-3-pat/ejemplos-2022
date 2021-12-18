@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+    html {
+      background-color: white;
+    }
+
+    fieldset {
+      border: 0;
+    }
+
+    .form {
+      background-color: lightblue;
+      margin: auto;
+      margin-top: 5%;
+      width: 50%;
+      text-align: center;
+      border-radius: 5px;
+      box-shadow: 5px 10px #888888;
+
+    }
+
+    .form-group {
+      clear: both;
+    }
+
+    .login-btn {
+      margin: 2% 0 2% 0;
+      background-color: lightgrey;
+    }
+  </style>
+</head>
+<body>
+    <div class="form">
+        <form id="form">
+         <fieldset>
+            <div class="form-group">
+              <label class="form-field" for="user">Usuario</label>
+            </div>
+            <div class="form-group">
+              <input required minlength="5" class="form-field" id="user" type="input"/>
+            </div>
+             <div class="form-group">
+              <label class="form-field" for="password">Password</label>
+             </div>
+            <div class="form-group">
+              <input required title="Must contain at least: one uppercase letter, one lowercase letter and a number or symbol. Password must be between 10 and 20 characters."
+                     pattern="(?=^.{10,128}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" class="form-field" id="password" type="password"/>
+             </div>
+            <div class="form-group">
+              <input type="submit" class="login-btn" value="Login"/>
+            </div>
+          </fieldset>
+        </form>
+    </div>
+    <script>
+    document.getElementById("form").addEventListener('submit', login);
+    function login (event){
+    	event.preventDefault()
+    	let user = document.getElementById("user").value;
+      let password = document.getElementById("password").value;
+      console.log("User " + user + " with password " + password +" tried to log in.")
+    }
+    </script>
+</body>
+</html>

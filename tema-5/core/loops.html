@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Javascript Core</title>
+    <script>
+// A function to compute factorials
+function factorial(n) {
+    if (n <= 1) return n;
+    else return n*factorial(n-1);
+}
+
+//Draw HTML
+function drawTable() {
+    document.write("<h1>Table of Factorials</h1>");
+    document.write("<table>");
+    document.write("<tr><th>n</th><th>n!</th></tr>");
+    for(var i = 1; i <= 10; i++) {
+        document.write("<tr><td>" + i + "</td><td>" + factorial(i) + "</td></tr>");
+    }
+    document.write("</table>");
+}
+    </script>
+</head>
+<body>
+    <h1>Javascript Core</h1>
+    <script>
+        drawTable();
+    </script>
+</body>
+</html>

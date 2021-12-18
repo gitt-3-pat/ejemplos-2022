@@ -23,6 +23,9 @@
 ## ¿Como probar en local?
 
 ````
-python3 -m http.server 9000
-python -m SimpleHTTPServer 9000
+mvn clean spring-boot:run -pl tema-3
+mvn clean spring-boot:run -pl tema-4
+mvn clean spring-boot:run -pl tema-5
+mvn clean spring-boot:run -pl tema-6
+mvn clean spring-boot:run -pl tema-7
 ````

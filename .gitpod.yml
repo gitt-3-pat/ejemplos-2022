@@ -1,0 +1,9 @@
+tasks:
+  - before: sdk env
+  - init: ./mvnw clean verify
+image:
+  file: .gitpod.Dockerfile
+
+vscode:
+  extensions:
+    - vscjava.vscode-java-pack

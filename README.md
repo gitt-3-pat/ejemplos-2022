@@ -24,10 +24,10 @@
 
 [![](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/gitt-3-pat/ejemplos-2021-2022)
 
-
 ## ¿Como probar en local?
 
 ````
+mvn clean verify
 mvn clean spring-boot:run -pl tema-3
 mvn clean spring-boot:run -pl tema-4
 mvn clean spring-boot:run -pl tema-5

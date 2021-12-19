@@ -23,7 +23,7 @@ public class ExternalServiceImpl implements ExternalService {
 
         System.out.println(param);
         globalConfiguration.getHosts().stream()
-                .map(GlobalConfiguration.Host::getAddress)
+                .map(Host::address)
                 .forEach(System.out::println);
 
         String fooResourceUrl = "http://localhost:8080/status";

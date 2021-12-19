@@ -17,7 +17,7 @@ public class MainApplication {
 
 	public static void displayAllBeans() {
 		String[] allBeanNames = applicationContext.getBeanDefinitionNames();
-		AtomicInteger counter = new AtomicInteger();
+		AtomicInteger counter = new AtomicInteger(1);
 		String SPACE = " ";
 
 		Arrays.stream(allBeanNames)

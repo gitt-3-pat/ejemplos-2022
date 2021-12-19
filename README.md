@@ -32,5 +32,5 @@ mvn clean spring-boot:run -pl tema-3
 mvn clean spring-boot:run -pl tema-4
 mvn clean spring-boot:run -pl tema-5
 mvn clean spring-boot:run -pl tema-6
-mvn clean spring-boot:run -pl tema-7
+mvn clean spring-boot:run -pl tema-7/spring-boot-core
 ````

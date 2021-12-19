@@ -1,6 +1,5 @@
 package info.jab.microservices;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;

@@ -2,7 +2,6 @@ package info.jab.microservices;
 
 import java.util.List;
 import javax.validation.Valid;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-@Slf4j
 @RestController
 public class MainController {
 
@@ -51,8 +49,8 @@ public class MainController {
             return new ResponseEntity<>("{\"result\" : \"KO\"}", HttpStatus.BAD_REQUEST);
         }
 
-        if ((loginParam.getUser().equals("DEMO")) &&
-            (loginParam.getPassword().equals("DEMO"))) {
+        if ((loginParam.user().equals("DEMO")) &&
+            (loginParam.password().equals("DEMO"))) {
             return new ResponseEntity<>("{\"result\" : \"OK\"}", HttpStatus.OK);
         }
         return new ResponseEntity<>("{\"result\" : \"KO\"}", HttpStatus.UNAUTHORIZED);

@@ -1,0 +1,275 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+
+  <title>Modal Without Bootstrap</title>
+  
+
+<style>
+.main{
+  width: 100%;
+  height: 100vh;
+  text-align: center;
+}
+
+.main div{
+  width: 400px;
+  height: 400px;
+  margin:0 auto;
+  text-align: center;
+
+}
+.main div button{
+  top: 500px;
+  height: 30px;
+  margin: 0 auto;
+}
+
+
+.container{
+  display: none;
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  opacity: 0.9;
+  background: #222;
+  z-index: 40000;
+  top:0;
+  left: 0;
+  overflow: hidden;
+
+  animation-name: fadeIn_Container;
+  animation-duration: 1s;
+  
+}
+
+.modal{
+  display:none;
+  top: 0;
+  min-width: 250px;
+  width: 80%;
+  height: 400px;
+  margin: 0 auto;
+  position: fixed;
+  z-index: 40001;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px #000;
+  margin-top: 30px;
+  margin-left: 10%;
+
+  animation-name: fadeIn_Modal;
+  animation-duration: 0.8s;
+ 
+}
+
+.header{
+  width: 100%;
+  height: 70px;
+  border-radius: 10px 10px 0px 0px;
+  border-bottom: 2px solid #ccc;
+}
+
+.header a{
+  text-decoration: none;
+  float: right;
+  line-height: 70px;
+  margin-right: 20px;
+  color: #aaa;
+}
+
+.content{
+  width: 100%;
+  height: 250px;
+}
+
+form{
+    margin-top: 20px;
+}
+
+form label{
+  display: block;
+  margin-left: 12%;
+  margin-top: 10px;
+  font-family: sans-serif;
+  font-size: 1rem;
+}
+
+form input{
+  display: block;
+  width: 75%;
+  margin-left: 12%;
+  margin-top: 10px;
+  border-radius: 3px;
+  font-family: sans-serif;
+}
+
+#first_label{
+  padding-top: 30px;
+}
+
+#second_label{
+  padding-top: 25px;
+}
+
+
+.footer{
+  width: 100%;
+  height: 80px;
+  border-radius: 0px 0px 10px 10px;
+  border-top: 2px solid #ccc;
+}
+
+.fotter button{
+  float: right;
+  margin-right: 10px;
+  margin-top: 18px;
+  text-decoration: none; 
+}
+
+/****MEDIA QUERIES****/
+
+@media screen and (min-width: 600px){
+
+  .modal{
+    width: 500px;
+    height: 300px;
+    margin-left: calc(50vw - 250px);
+    margin-top: calc(50vh - 150px);
+  }
+
+
+  .header{
+    width: 100%;
+    height: 40px;
+  }
+
+  .header a{
+    line-height: 40px;
+    margin-right: 10px;
+  }
+
+  .content{
+    width: 100%;
+    height: 190px;
+  }
+
+  form label{
+    margin-left: 10%;
+    margin-top: 10px;
+  }
+
+  form input{
+    width: 75%;
+    margin-left: 10%;
+    margin-top: 10px;
+  }
+
+  #first_label{
+  padding-top: 0px;
+  }
+
+  #second_label{
+    padding-top: 0px;
+  }
+
+  .footer{
+    width: 100%;
+    height: 70px;   
+  }
+
+  .footer button{
+    float: right;
+    margin-right: 10px;
+    margin-top: 10px;
+  }
+
+}
+
+/*LARGE SCREEN*/
+@media screen and (min-width: 1300px){
+
+}
+
+/****ANIMATIONS****/
+
+@keyframes fadeIn_Modal {
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn_Container {
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 0.9;
+  }
+}
+</style>
+
+  
+  
+  
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+
+</head>
+
+<body translate="no" >
+  <div class="main">
+  <div>
+    <button id="open" onclick="openModal">Open Modal</button>
+  </div>
+</div>
+<div class="container" id="a">
+  
+</div>
+<div class="modal" id="b">
+  <div class="header">
+    <a href="#" class="cancel">X</a>
+  </div>
+  <div class="content">
+    <form>
+      <label id="first_label">Username</label>
+      <input type="text" placeholder="Introduce tu username"/>
+      <label id="second_label">Password</label>
+      <input type="password" placeholder="Introduce tu password"/>
+    </form>
+  </div>
+  <div class="footer">
+    <button id="login">Iniciar Sesión</button>
+    <button class="cancel">Cancelar</button>
+  </div>
+</div>
+
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+      <script id="rendered-js" >
+$("#open").click(function () {
+  $("#a").css("display", "block");
+  $("#b").css("display", "block");
+});
+
+
+$(".cancel").click(function () {
+  $("#a").fadeOut();
+  $("#b").fadeOut();
+});
+
+    </script>
+
+
+</body>
+
+</html>

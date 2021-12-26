@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:insert="~{fragments/header}"/>
+<body>
+    <header>Header</header>
+    <div id="main">
+        <nav>Nav</nav>
+        <article>
+            Parameter received: <span th:text="${parameter}"></span>
+        </article>
+        <aside>Aside</aside>
+    </div>
+    <footer>
+        Footer here
+    </footer>
+</body>
+
+</html>

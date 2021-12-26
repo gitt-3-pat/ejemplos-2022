@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Form1</title>
+    <meta charset="utf-8">
+</head>
+<body>
+
+    <h2>HTML Forms</h2>
+
+    <form action="/your_backend_url" method="post" enctype="application/x-www-form-urlencoded">
+        <fieldset>
+            <legend>Personal data section:</legend>
+            <label for="fname">First name:</label><br>
+            <input type="text" id="fname" name="fname" value="John"><br>
+            <label for="lname">Last name:</label><br>
+            <input type="text" id="lname" name="lname" value="Doe"><br><br>
+            <input type="submit" value="Submit">
+        </fieldset>
+        <fieldset>
+            <legend>Career section:</legend>
+            <label for="jobTitle">Current Job title</label><br>
+            <input type="text" id="jobTitle" name="jobTitle" value=""><br>
+            <label for="employeer">Employeer:</label><br>
+            <input type="text" id="employeer" name="employeer" value=""><br><br>
+            <input type="submit" value="Submit">
+        </fieldset>
+    </form>
+
+</body>
+</html>

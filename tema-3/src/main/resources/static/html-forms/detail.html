@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Form1</title>
+    <meta charset="utf-8">
+</head>
+<body>
+
+    <h2>Grado en Ingeniería en Tecnologías de Telecomunicación</h2>
+    <h3>Primero</h3>
+    <p>
+        Asignaturas Anuales
+    </p>
+    <!-- Iterar sobre una lista de datos -->
+    <ul>
+        <li>
+            <form method="post" enctype="application/x-www-form-urlencoded" action="/api/v1/actualizar_nota">
+                <input type="hidden" id="id_asignature" value="1">
+                <label for="nota_asignatura">Álgebra y Geometría	9.0 ECTS</label>
+                <input type="number" id="nota_asignatura" value="" placeholder="Nota de alumno" required="required" min="0" max="10"
+                       oninvalid="this.setCustomValidity('Actualiza Nota')"
+                       oninput="setCustomValidity('')">
+                <input type="submit">
+            </form>
+        </li>
+        <li>
+            <form method="post" enctype="application/x-www-form-urlencoded" action="/api/v1/actualizar_nota">
+                <input type="hidden" id="id_asignature" value="2">
+                <label for="nota_asignatura">Cálculo	12.0 ECTS</label>
+                <input type="number" id="nota_asignatura" value="" placeholder="Nota de alumno" required="required" min="0" max="10">
+                <input type="submit">
+            </form>
+        </li>
+        <li>
+            <form method="post" enctype="application/x-www-form-urlencoded" action="/api/v1/actualizar_nota">
+                <input type="hidden" id="id_asignature" value="2">
+                <label for="nota_asignatura">Fundamentos físicos de las comunicaciones	12.0 ECTS</label>
+                <input type="number" id="nota_asignatura" value="" placeholder="Nota de alumno" required="required" min="0" max="10">
+                <input type="submit">
+            </form>
+        </li>
+        <li>
+            <form method="post" enctype="application/x-www-form-urlencoded" action="/api/v1/actualizar_nota">
+                <input type="hidden" id="id_asignature" value="3">
+                <label for="nota_asignatura">Habilidades Personales	3.0 ECTS</label>
+                <input type="number" id="nota_asignatura" value="" placeholder="Nota de alumno" required="required" min="0" max="10">
+                <input type="submit">
+            </form>
+        </li>
+        <li>
+            <form method="post" enctype="application/x-www-form-urlencoded" action="/api/v1/actualizar_nota">
+                <input type="hidden" id="id_asignature" value="4">
+                <label for="nota_asignatura">English for Engineers I / Français I / Deutsch I	6.0/12.0 ECTS</label>
+                <input type="number" id="nota_asignatura" value="" placeholder="Nota alumno" required="required" min="0" max="10">
+                <input type="submit">
+            </form>
+        </li>
+    </ul>
+    <p>
+        Primer Semestre
+    </p>
+    <p>
+    ...
+    </p>
+    <a href="master.html">Volver</a>
+</body>
+</html>

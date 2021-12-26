@@ -21,6 +21,7 @@
 		<module>spring-boot-core</module>
 		<module>spring-boot-static-content</module>
 		<module>spring-boot-actuator</module>
+		<module>spring-boot-thymeleaf</module>
 	</modules>
 
 </project>

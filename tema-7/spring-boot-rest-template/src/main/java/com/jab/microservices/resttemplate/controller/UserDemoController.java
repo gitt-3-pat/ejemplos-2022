@@ -29,7 +29,7 @@ public class UserDemoController implements UsersApi{
 		 
 		List<UserItem> userList = new ArrayList<UserItem>();
 		String resourceUrl
-		  = "http://localhost:8080/demo/users/v1";
+		  = "http://localhost:8080/demo/v1/users";
 		
 		userList = (List<UserItem>) res.getForObject(
 				resourceUrl,

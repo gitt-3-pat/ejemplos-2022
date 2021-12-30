@@ -22,7 +22,7 @@ import com.delaware.swagger.generated.model.UserItem;
 
 
 @RestController
-@RequestMapping("/demo")
+@RequestMapping("/demo/v1")
 public class UserController implements UsersApi{
 
 	@Autowired
@@ -31,7 +31,7 @@ public class UserController implements UsersApi{
 	private static final String FILE_NAME = "users.json";
 
 	@Override
-	@GetMapping("/users/v1")
+	@GetMapping("/users")
 	public ResponseEntity<List<UserItem>> usersListsbyId() {
 		 
 		List<UserItem> userList = new ArrayList<UserItem>();

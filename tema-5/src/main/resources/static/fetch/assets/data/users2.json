@@ -1,0 +1,17 @@
+[{
+        "username": "teach123",
+        "firstName": "Bill",
+        "lastName": "Doors",
+        "gender": "Male",
+        "profileURL": "assets/img/male.png",
+        "email": "teacher1@icai.com"
+    },
+    {
+        "username": "student123",
+        "firstName": "James",
+        "lastName": "Morrison",
+        "gender": "Male",
+        "profileURL": "assets/img/male.png",
+        "email": "student1@icai.com"
+    }
+]

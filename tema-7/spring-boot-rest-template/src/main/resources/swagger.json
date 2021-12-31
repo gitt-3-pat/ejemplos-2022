@@ -1,0 +1,397 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "DEMO REST-API (Users)",
+        "description": "DEMO REST-API (Users)",
+        "contact": {
+            "name": "ICAI",
+            "email": "support@icai.com"
+            
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+          }
+    },
+    "servers": [
+        {
+            "url": "http://localhost:{port}/{basePath}",
+            "description": "Development server",
+            "variables": {
+                "port": {
+                  "enum": [
+                    "8080"
+                  ],
+                  "default": "8080"
+                },
+                "basePath": {
+                  "default": "demo/v1"
+                }
+              }
+        }
+    ],
+    "tags": [
+        {
+            "name": "DEMO-B2B",
+            "description": "B2B operations with Users Resources"
+        }
+    ],
+    "paths": {
+        "/users/": {
+            "get": {
+                "tags": [
+                    "DEMO-B2B"
+                ],
+                "summary": "Return Users lists",
+                "description": "Return Users lists",
+                "operationId": "usersListsbyId",
+                "parameters": [],
+                "security": [
+                    {
+                        "OAuth2": [
+                            "read"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns a Users List",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserList"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Consumer has been not authenticated",
+                        "content": {
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorDetailUnauthorized"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Consumer does not have permissions",
+                        "content": {
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorDetailForbidden"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found",
+                        "content": {
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorDetailNotFound"
+                                }
+                            }
+                        }
+                    },
+                    "415": {
+                        "description": "Invalid Content Type",
+                        "content": {
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorDetailMediaNotSupport"
+                                }
+                            }
+                        }
+                    },
+                    "429": {
+                        "description": "Too many request to the API",
+                        "content": {
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorDetailTooManyRequest"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Error Server",
+                        "content": {
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorDetailInternalError"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Internal Error Server",
+                        "content": {
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorDetailInternalError"
+                                }
+                            }
+                        }
+                    }
+                } 
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "ErrorDetailUnauthorized": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "returnCode": {
+                    "type": "string",
+                    "maxLength": 250,
+                    "example": "401",
+                    "pattern": "^[0-9]+$"
+                  },
+                  "statusCode": {
+                    "type": "string",
+                    "maxLength": 250,
+                    "example": "401",
+                    "pattern": "^[a-zA-Z0-9]+$"
+                  },
+                  "statusMessage": {
+                    "type": "string",
+                    "maxLength": 250,
+                    "example": "UnAuthorized",
+                    "pattern": "^[a-zA-Z0-9]+$"
+                  },
+                  "extendedMessage": {
+                    "type": "string",
+                    "maxLength": 250,
+                    "example": "UnAuthorized Extendido",
+                    "pattern": "^[a-zA-Z0-9 ]+$"
+                  }
+                }
+              },
+              "ErrorDetailForbidden": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "returnCode": {
+                    "type": "string",
+                    "maxLength": 250,
+                    "example": "403",
+                    "pattern": "^[0-9]+$"
+                  },
+                  "statusCode": {
+                    "type": "string",
+                    "maxLength": 250,
+                    "example": "403",
+                    "pattern": "^[a-zA-Z0-9]+$"
+                  },
+                  "statusMessage": {
+                    "type": "string",
+                    "maxLength": 250,
+                    "example": "Forbidden",
+                    "pattern": "^[a-zA-Z0-9]+$"
+                  },
+                  "extendedMessage": {
+                    "type": "string",
+                    "maxLength": 250,
+                    "example": "Forbbiden Extended",
+                    "pattern": "^[a-zA-Z0-9 ]+$"
+                  }
+                }
+              },
+              "ErrorDetailNotFound": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "returnCode": {
+                    "type": "string",
+                    "maxLength": 250,
+                    "example": "404",
+                    "pattern": "^[0-9]+$"
+                  },
+                  "statusCode": {
+                    "type": "string",
+                    "maxLength": 250,
+                    "example": "404",
+                    "pattern": "^[a-zA-Z0-9]+$"
+                  },
+                  "statusMessage": {
+                    "type": "string",
+                    "maxLength": 250,
+                    "example": "Not Found",
+                    "pattern": "^[a-zA-Z0-9 ]+$"
+                  },
+                  "extendedMessage": {
+                    "type": "string",
+                    "maxLength": 250,
+                    "example": "Not Found Extended",
+                    "pattern": "^[a-zA-Z0-9 ]+$"
+                  }
+                }
+              },
+              "ErrorDetailMediaNotSupport": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "returnCode": {
+                    "type": "string",
+                    "maxLength": 250,
+                    "example": "415",
+                    "pattern": "^[0-9]+$"
+                  },
+                  "statusCode": {
+                    "type": "string",
+                    "maxLength": 250,
+                    "example": "415",
+                    "pattern": "^[a-zA-Z0-9]+$"
+                  },
+                  "statusMessage": {
+                    "type": "string",
+                    "maxLength": 250,
+                    "example": "Media Not Support",
+                    "pattern": "^[a-zA-Z0-9 ]+$"
+                  },
+                  "extendedMessage": {
+                    "type": "string",
+                    "maxLength": 250,
+                    "example": "Media Not Support Extendido",
+                    "pattern": "^[a-zA-Z0-9 ]+$"
+                  }
+                }
+              },
+              "ErrorDetailTooManyRequest": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "returnCode": {
+                        "type": "string",
+                        "maxLength": 250,
+                        "example": "429",
+                        "pattern": "^[0-9]+$"
+                    },
+                    "statusCode": {
+                        "type": "string",
+                        "maxLength": 250,
+                        "example": "429",
+                        "pattern": "^[a-zA-Z0-9]+$"
+                    },
+                    "statusMessage": {
+                        "type": "string",
+                        "maxLength": 250,
+                        "example": "Too Many Request",
+                        "pattern": "^[a-zA-Z0-9 ]+$"
+                    },
+                    "extendedMessage": {
+                        "type": "string",
+                        "maxLength": 250,
+                        "example": "Too Many Request Extendido",
+                        "pattern": "^[a-zA-Z0-9 ]+$"
+                    }
+                }
+              },
+              "ErrorDetailInternalError": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "returnCode": {
+                    "type": "string",
+                    "maxLength": 250,
+                    "example": "500",
+                    "pattern": "^[0-9]+$"
+                  },
+                  "statusCode": {
+                    "type": "string",
+                    "maxLength": 250,
+                    "example": "500",
+                    "pattern": "^[a-zA-Z0-9]+$"
+                  },
+                  "statusMessage": {
+                    "type": "string",
+                    "maxLength": 250,
+                    "example": "Internal Error",
+                    "pattern": "^[a-zA-Z0-9 ]+$"
+                  },
+                  "extendedMessage": {
+                    "type": "string",
+                    "maxLength": 250,
+                    "example": "Internal Error Extendido",
+                    "pattern": "^[a-zA-Z0-9 ]+$"
+                  }
+                }
+              },
+              "UserList":{
+                "type": "array",
+                "maxItems": 999,
+                "minItems": 0,
+                "items":{
+                    "$ref": "#/components/schemas/UserItem"
+                }
+              },
+              "UserItem":{
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "id":{
+                        "type": "string",
+                        "maxLength": 50,
+                        "example": "11",
+                        "pattern": "^[0-9]+$"
+                    },
+                    "username":{
+                        "type": "string",
+                        "maxLength": 50,
+                        "example": "user123",
+                        "pattern": "^[a-zA-Z0-9- ]+$"
+                    },
+                    "firstName":{
+                        "type": "string",
+                        "maxLength": 50,
+                        "example": "John",
+                        "pattern": "^[a-zA-Z0-9- ]+$"
+                    },
+                    "lastName":{
+                        "type": "string",
+                        "maxLength": 50,
+                        "example": "Doe",
+                        "pattern": "^[a-zA-Z0-9- ]+$"
+                    },
+                    "gender":{
+                        "type": "string",
+                        "maxLength": 50,
+                        "example": "Male",
+                        "pattern": "^[a-zA-Z]+$"
+                    },
+                    "profileURL":{
+                        "type": "string",
+                        "maxLength": 50,
+                        "example": "assets/img/male.png",
+                        "pattern": "^(\\s*\\S+)*"
+                    },
+                    "email":{
+                        "type": "string",
+                        "maxLength": 50,
+                        "example": "john.doe@example.com",
+                        "pattern": "^(\\s*\\S+)*"
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "OAuth2": {
+                "type": "oauth2",
+                "flows": {
+                    "authorizationCode": {
+                        "scopes": {
+                            "write": "modify objects in your account",
+                            "read": "read objects in your account"
+                        },
+                        "authorizationUrl": "https://example.com/oauth/authorize",
+                        "tokenUrl": "https://example.com/oauth/token" 
+                    }
+                }
+            }
+        }
+    }
+}

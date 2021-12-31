@@ -27,12 +27,17 @@
 ## ¿Como probar en local?
 
 ````
-mvn clean verify
-mvn clean spring-boot:run -pl tema-3
-mvn clean spring-boot:run -pl tema-4
-mvn clean spring-boot:run -pl tema-5
-mvn clean spring-boot:run -pl tema-6
-mvn clean spring-boot:run -pl tema-7/spring-boot-core
-mvn clean spring-boot:run -pl tema-7/spring-boot-static-content
-mvn clean spring-boot:run -pl tema-7/spring-boot-actuator
+./mvnw clean verify
+./mvnw clean spring-boot:run -pl tema-3
+./mvnw clean spring-boot:run -pl tema-4
+./mvnw clean spring-boot:run -pl tema-5
+./mvnw clean spring-boot:run -pl tema-6
+./mvnw clean spring-boot:run -pl tema-7/spring-boot-core
+./mvnw clean spring-boot:run -pl tema-7/spring-boot-thymeleaf
+./mvnw dependency:tree -pl tema-7/spring-boot-thymeleaf -Dscope=compile
+./mvnw dependency:tree -pl tema-7/spring-boot-thymeleaf-Dscope=test
+./mvnw versions:display-dependency-updates -pl tema-7/spring-boot-thymeleaf
+./mvnw versions:display-plugin-updates -pl tema-7/spring-boot-thymeleaf
+./mvnw clean spring-boot:run -pl tema-7/spring-boot-static-content
+./mvnw clean spring-boot:run -pl tema-7/spring-boot-actuator
 ````

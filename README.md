@@ -31,7 +31,6 @@
 ./mvnw clean spring-boot:run -pl tema-3
 ./mvnw clean spring-boot:run -pl tema-4
 ./mvnw clean spring-boot:run -pl tema-5
-./mvnw clean spring-boot:run -pl tema-6
 ./mvnw clean spring-boot:run -pl tema-7/spring-boot-core
 ./mvnw clean spring-boot:run -pl tema-7/spring-boot-thymeleaf
 ./mvnw dependency:tree -pl tema-7/spring-boot-thymeleaf -Dscope=compile

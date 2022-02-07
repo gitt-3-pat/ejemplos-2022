@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Regex</title>
+    <meta charset="utf-8">
+</head>
+<body>
+
+<h1>JavaScript String Methods</h1>
+
+<p>Replace "Microsoft" with "Google" in the paragraph below:</p>
+
+<button onclick="myFunction()">Try it</button>
+
+<p id="demo">Please visit Microsoft!</p>
+
+<script>
+function myFunction() {
+  let text = document.getElementById("demo").innerHTML;
+  document.getElementById("demo").innerHTML =
+  text.replace("Microsoft","Google");
+}
+</script>
+
+</body>
+</html>

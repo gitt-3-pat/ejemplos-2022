@@ -78,7 +78,7 @@
 							<goal>generate</goal>
 						</goals>
 						<configuration>
-							<inputSpec>${project.build.sourceDirectory}/../resources/swagger.json</inputSpec>
+							<inputSpec>${project.basedir}/src/main/resources/swagger.json</inputSpec>
 							<generatorName>javascript</generatorName>
 							<modelPackage>edu.icai.gitt-pat.swagger.generated.model</modelPackage>
 							<apiPackage>edu.icai.gitt-pat.swagger.generated.api</apiPackage>

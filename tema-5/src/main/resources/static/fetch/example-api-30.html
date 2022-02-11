@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Hello World</title>
+</head>
+<body>
+    <script type="text/javascript">
+        //Example using promises
+        //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
+        function getApi1() {
+
+            console.log("Calling endpoint");
+
+            var address = "/fetch/assets/data/api-1.json";
+            var headers = {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    };
+            return fetch(address, {
+                    method: 'GET',
+                    headers: headers
+                })
+                .then(response => response.json())
+                .then(data => {
+                    return data;
+                })
+                .catch(e => {
+                  console.error("Error " + e)
+                })
+
+            console.log("End Function");
+        }
+
+        function getApi2(param) {
+
+            console.log("Encadenando parametro en siguiente llamada")
+            console.log(param)
+
+            console.log("Calling endpoint");
+
+            var address = "/fetch/assets/data/api-1.json";
+            var headers = {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    };
+            return fetch(address, {
+                    method: 'GET',
+                    headers: headers
+                })
+                .then(response => response.json())
+                .then(data => {
+                    return data;
+                })
+                .catch(e => {
+                  console.error("Error " + e)
+                })
+
+            console.log("End Function");
+        }
+
+        console.log("Ejemplo encadenando funciones")
+        console.log("Start");
+        getApi1().then(data => {
+            //console.log("Showing Data from Api1")
+            console.log(data)
+            console.log("Showing Data from Api2")
+            getApi2(data.result).then(data => {
+                console.log(data)
+                console.log("End");
+            });
+        });
+    </script>
+</body>
+</html>

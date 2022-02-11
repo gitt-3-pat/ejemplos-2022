@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Hello World</title>
+</head>
+<body>
+    <script type="text/javascript">
+
+        //Example using promises
+        //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
+        function getApi1() {
+
+            console.log("Calling endpoint");
+
+            var address = "/fetch/assets/data/api-1.json";
+            var headers = {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    };
+            fetch(address, {
+                    method: 'GET',
+                    headers: headers
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data.result);
+                    document.write(data.result);
+                })
+                .catch(e => {
+                  console.error("Error " + e)
+                })
+
+            console.log("End Function");
+        }
+
+        getApi1();
+    </script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>edu.icai.gitt-pat</groupId>
+		<artifactId>gitt-pat-ejemplos-2021-2022</artifactId>
+		<version>0.1.0-SNAPSHOT</version>
+		<relativePath>../../pom.xml</relativePath>
+	</parent>
+
+	<groupId>edu.icai.gitt-pat</groupId>
+	<artifactId>generate-client-java</artifactId>
+	<version>0.1.0-SNAPSHOT</version>
+
+	<name>generate-client-java</name>
+	<description>Generate Client API-REST for JAVA</description>
+
+	<dependencies>
+		<!-- CODEGEN OAS 3 -->
+		<dependency>
+			<groupId>org.openapitools</groupId>
+			<artifactId>openapi-generator-maven-plugin</artifactId>
+			<version>5.4.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.8.6</version>
+		</dependency>
+		<dependency>
+			<groupId>com.squareup.okhttp3</groupId>
+			<artifactId>okhttp</artifactId>
+			<version>4.9.3</version>
+		</dependency>
+		<dependency>
+			<groupId>com.squareup.okhttp3</groupId>
+			<artifactId>logging-interceptor</artifactId>
+			<version>4.9.3</version>
+		</dependency>
+		<dependency>
+			<groupId>io.gsonfire</groupId>
+			<artifactId>gson-fire</artifactId>
+			<version>1.8.4</version>
+		</dependency>
+<dependency>
+    <groupId>org.apache.oltu.oauth2</groupId>
+    <artifactId>org.apache.oltu.oauth2.client</artifactId>
+    <version>1.0.2</version>
+</dependency>
+	</dependencies>
+
+	<build>
+		<sourceDirectory>src/main/java</sourceDirectory>
+		<resources>
+			<resource>
+				<directory>${project.build.sourceDirectory}/../resources</directory>
+			</resource>
+			<resource>
+				<directory>${project.build.directory}/generated-sources/openapi/src/main/java</directory>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.openapitools</groupId>
+				<artifactId>openapi-generator-maven-plugin</artifactId>
+				<version>5.4.0</version>
+				<executions>
+					<execution>
+						<id>generate-spring-mvc</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<inputSpec>${project.basedir}/src/main/resources/swagger.json</inputSpec>
+							<generatorName>java</generatorName>
+							<modelPackage>edu.icai.gitt-pat.swagger.generated.model</modelPackage>
+							<apiPackage>edu.icai.gitt-pat.swagger.generated.api</apiPackage>
+							<invokerPackage>edu.icai.gitt-pat.swagger.generated.client</invokerPackage>
+							<generateApiDocumentation>false</generateApiDocumentation>
+							<generateModelDocumentation>false</generateModelDocumentation>
+							<generateSupportingFiles>true</generateSupportingFiles>
+							<generateApiTests>false</generateApiTests>
+							<output>${project.build.directory}/generated-sources/client</output>
+							<configOptions>
+								<dateLibrary>java.util.Date</dateLibrary>
+							</configOptions>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>add-source</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>target/generated-sources/client/src/main/java/</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

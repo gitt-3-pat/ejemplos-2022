@@ -23,6 +23,8 @@
 		<module>spring-boot-actuator</module>
 		<module>spring-boot-rest-template</module>
 		<module>spring-boot-thymeleaf</module>
+		<module>generate-client-java</module>
+		<module>generate-client-javascript</module>
 	</modules>
 
 </project>

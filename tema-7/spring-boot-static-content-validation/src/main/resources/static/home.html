@@ -1,0 +1,171 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Hello World</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css"
+          integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK"
+          crossorigin="anonymous" />
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1>Home</h1>
+            <a href="/index.html">Volver a Login</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <h2>Madrid Postal Codes</h2>
+        </div>
+        <div class="col-6">
+            <h2>Madrid Cities</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div id="content"></div>
+        </div>
+        <div class="col-6">
+            <div id="content2"></div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    function showContent(arrData, div) {
+
+        var html = []
+        html.push("<ul>");
+        arrData.forEach(element => {
+            html.push("<li>");
+            html.push(element)
+            html.push("</li>");
+        });
+        html.push("</ul>");
+        document.getElementById(div).innerHTML = html.join("");
+    }
+
+    function getCodes() {
+        //https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers
+        //https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept
+        //https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type
+        var headers = {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                };
+        //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
+        fetch("/postalcodes", {
+                method: 'GET',
+                headers: headers
+            })
+            .then(response => response.json())
+            .then(data => {
+                showContent(data, "content");
+            });
+
+        console.log("End PostalCodes");
+    }
+
+    function getCities() {
+        var headers = {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                };
+        //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
+        fetch("/cities", {
+                method: 'GET',
+                headers: headers
+            })
+            .then(response => response.json())
+            .then(data => {
+                showContent(data, "content2");
+            });
+
+        console.log("End GetCities");
+    }
+
+    console.log("Ejemplo secuencial")
+    console.log("Start");
+    getCodes();
+    getCities();
+    console.log("End");
+</script>
+<script type="text/javascript">
+
+   function getCities2() {
+         return fetch("/cities", {
+                method: 'GET',
+                headers: {}
+            })
+            .then(response => response.json())
+            .then(data => {
+                return data;
+            });
+
+        console.log("End GetCities 2");
+    }
+
+    //getCities2().then(data => console.log(data));
+
+    var promise1 = getCities2();
+    var promise2 = getCities2();
+    var promise3 = getCities2();
+
+    console.log("Ejemplo con Promises.all")
+    console.log("Start");
+    //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all
+    Promise.all([promise1, promise2, promise3]).then((values) => {
+        console.log(values);
+    });
+    console.log("End");
+
+</script>
+<script type="text/javascript">
+
+   function getCities3() {
+         return fetch("/cities", {
+                method: 'GET',
+                headers: {}
+            })
+            .then(response => response.json())
+            .then(data => {
+                return data;
+            });
+    }
+
+    function getCities4(param) {
+
+         console.log("Encadenando parametro en siguiente llamada")
+         console.log(param)
+
+         return fetch("/cities", {
+                method: 'GET',
+                headers: {}
+            })
+            .then(response => response.json())
+            .then(data => {
+                return data;
+            });
+    }
+
+    console.log("Ejemplo encadenando funciones")
+    console.log("Start");
+    getCities3().then(data => {
+        console.log("Showing Data from GetCities3")
+        console.log(data)
+        console.log("Showing Data from GetCities4")
+        getCities4(data[0]).then(data => {
+            console.log(data)
+            console.log("End");
+        });
+    });
+
+
+</script>
+</body>
+</html>

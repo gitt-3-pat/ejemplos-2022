@@ -25,6 +25,7 @@
 		<module>spring-boot-thymeleaf</module>
 		<module>generate-client-java</module>
 		<module>generate-client-javascript</module>
+		<module>spring-boot-static-content-validation</module>
 	</modules>
 
 </project>

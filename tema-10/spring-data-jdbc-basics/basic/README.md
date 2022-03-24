@@ -1,0 +1,56 @@
+# Basic Concepts
+
+- [x] Dependency
+- [ ] JDBCTemplate
+- [ ] Entity & Aggregates
+- [ ] Creating Repositories
+- [ ] Using Repositories
+- [ ] Testing Repositories
+
+## Examples
+
+- https://docs.oracle.com/javase/8/docs/api/java/sql/package-summary.html
+
+```
+DROP TABLE IF EXISTS TABLEDEMO;
+
+-- Iteration 1
+
+CREATE TABLE TABLEDEMO (
+    ID INTEGER IDENTITY PRIMARY KEY,
+    FIELD1 VARCHAR(255) NOT NULL,
+    FIELD2 VARCHAR(255) NOT NULL
+);
+
+-- Iteration 2
+
+CREATE TABLE TABLEDEMO (
+    ID INTEGER IDENTITY PRIMARY KEY,
+    FIELD1 VARCHAR(255) NOT NULL,
+    FIELD2 VARCHAR(255) NOT NULL,
+    BIRTHDAY DATE NOT NULL
+);
+
+-- Iteration 3
+
+CREATE TABLE TABLEDEMO (
+    ID INTEGER IDENTITY PRIMARY KEY,
+    FIELD1 VARCHAR(255) NOT NULL,
+    FIELD2 VARCHAR(255) NOT NULL,
+    BIRTHDAY DATE NOT NULL,
+    MYTIME TIME NOT NULL
+);
+
+-- Iteration 4
+
+CREATE TABLE TABLEDEMO (
+    ID INTEGER IDENTITY PRIMARY KEY,
+    FIELD1 VARCHAR(255) NOT NULL,
+    FIELD2 VARCHAR(255) NOT NULL,
+    BIRTHDAY DATE NOT NULL,
+    MYTIME TIME NOT NULL,
+    NOW TIMESTAMP NOT NULL,
+    FLAG BOOLEAN NOT NULL
+);
+
+```

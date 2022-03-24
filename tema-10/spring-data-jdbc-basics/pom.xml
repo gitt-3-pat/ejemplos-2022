@@ -18,9 +18,11 @@
 
 	<modules>
 		<module>basic</module>
+		<!--
 		<module>onetoone</module>
 		<module>onetomany</module>
 		<module>manytomany</module>
+		-->
 	</modules>
 
 	<build>

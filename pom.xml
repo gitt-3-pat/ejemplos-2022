@@ -18,7 +18,7 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <spring-boot.version>2.6.2</spring-boot.version>
+        <spring-boot.version>2.6.5</spring-boot.version>
         <spring-data.version>2021.1.0</spring-data.version>
         <spring-cloud.version>2021.0.0</spring-cloud.version>
 
@@ -97,11 +97,13 @@
                                 <requireJavaVersion>
                                     <version>17</version>
                                 </requireJavaVersion>
+                                <!--
                                 <bannedDependencies>
                                     <excludes>
                                         <exclude>org.projectlombok:lombok</exclude>
                                     </excludes>
                                 </bannedDependencies>
+                                -->
                             </rules>
                             <fail>true</fail>
                         </configuration>
@@ -140,5 +142,6 @@
         <module>tema-4</module>
         <module>tema-5</module>
         <module>tema-7</module>
+        <module>tema-10</module>
     </modules>
 </project>

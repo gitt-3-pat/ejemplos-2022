@@ -26,7 +26,7 @@
 		<dependency>
 			<groupId>org.openapitools</groupId>
 			<artifactId>openapi-generator-maven-plugin</artifactId>
-			<version>3.3.4</version>
+			<version>5.1.0</version>
 		</dependency>
 		<!-- SWAGGER -->
 		<dependency>
@@ -49,7 +49,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
+
 	</dependencies>
 
 	<build>

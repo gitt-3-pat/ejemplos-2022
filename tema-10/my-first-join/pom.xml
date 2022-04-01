@@ -12,7 +12,8 @@
 
 	<groupId>edu.icai.gitt-pat</groupId>
 	<artifactId>my-first-join</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.1.0-SNAPSHOT</version>
+
 	<name>my-first-join</name>
 	<description>Demo project for Spring Boot</description>
 

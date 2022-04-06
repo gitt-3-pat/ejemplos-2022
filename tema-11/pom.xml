@@ -10,23 +10,15 @@
 	</parent>
 
 	<groupId>edu.icai.gitt-pat</groupId>
-	<artifactId>tema-7</artifactId>
+	<artifactId>tema-11</artifactId>
 	<version>0.1.0-SNAPSHOT</version>
 
-	<name>tema-7</name>
+	<name>tema-11</name>
 	<description>Sring Boot Examples</description>
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>spring-boot-core</module>
-		<module>spring-boot-static-content</module>
-		<module>spring-boot-actuator</module>
-		<!--<module>spring-boot-rest-template</module>-->
-		<module>spring-boot-rest-template-server</module>
-		<module>spring-boot-thymeleaf</module>
-		<module>generate-client-java</module>
-		<module>generate-client-javascript</module>
-		<module>spring-boot-static-content-validation</module>
+		<module>spring-boot-security</module>
 	</modules>
 
 </project>

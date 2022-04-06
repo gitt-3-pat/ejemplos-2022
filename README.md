@@ -39,4 +39,5 @@
 ./mvnw versions:display-plugin-updates -pl tema-7/spring-boot-thymeleaf
 ./mvnw clean spring-boot:run -pl tema-7/spring-boot-static-content
 ./mvnw clean spring-boot:run -pl tema-7/spring-boot-actuator
+./mvnw clean spring-boot:run -pl tema-11/spring-boot-security
 ````

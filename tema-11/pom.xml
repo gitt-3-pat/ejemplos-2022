@@ -10,16 +10,15 @@
 	</parent>
 
 	<groupId>edu.icai.gitt-pat</groupId>
-	<artifactId>tema-10</artifactId>
+	<artifactId>tema-11</artifactId>
 	<version>0.1.0-SNAPSHOT</version>
 
-	<name>tema-10</name>
-	<description>Spring data JDBC Examples</description>
+	<name>tema-11</name>
+	<description>Sring Boot Examples</description>
 	<packaging>pom</packaging>
 
 	<modules>
-		<!-- <module>spring-data-jdbc-basics</module> -->
-		<module>my-first-schema</module>
+		<module>spring-boot-security</module>
 	</modules>
 
 </project>

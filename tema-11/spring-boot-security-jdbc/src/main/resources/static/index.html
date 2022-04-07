@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Login View</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css"
+          integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK"
+          crossorigin="anonymous" />
+    <script type="text/javascript">
+
+        function validateForm() {
+            try {
+                var inputValue1 = document.getElementById("input1").value;
+                var inputValue2 = document.getElementById("input2").value;
+                const data = { user: inputValue1, password: inputValue2 };
+                const address = '/api/login';
+                fetch(address, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data);
+                        if(data.result == "OK") {
+                            console.log(data.access_token);
+                            localStorage.setItem("access_token", data.access_token);
+                            console.log("Authenticated");
+                            document.location.href="/home.html";
+                        } else {
+                            alert("Credential not recognized");
+                        }
+                    });
+
+            } catch (err) {
+                console.error(err.message);
+            }
+            return false;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1>Interacting with a REST API</h1>
+                <h2>Using a Web Form handled by JS</h2>
+                <form method="post" action="/login2" onsubmit="return validateForm()">
+                    <input type="text" name="user" id="input1" />
+                    <input type="text" name="password" id="input2" />
+                    <input type="submit" value="Enviar">
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

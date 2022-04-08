@@ -19,7 +19,6 @@
 
 	<modules>
 		<module>spring-boot-security</module>
-		<module>spring-boot-security-jdbc-light</module>
 		<module>spring-boot-security-jdbc</module>
 	</modules>
 

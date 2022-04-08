@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Home View</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css"
+          integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK"
+          crossorigin="anonymous" />
+
+    <script>
+        var access_token = localStorage.getItem("access_token");
+        console.log(access_token);
+        if(access_token === null) {
+            document.location.href="/index.html";
+        }
+    </script>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1>Home</h1>
+            <a href="/logout.html">Logout</a>
+        </div>
+    </div>
+    <div>
+        <div class="col-12">
+            <hr />
+            <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae elit metus. Donec id eros eu diam finibus pulvinar. Phasellus pretium ipsum quis libero ultricies rutrum. Quisque sit amet nulla elit. Sed hendrerit placerat magna, vitae luctus lorem finibus ornare. Praesent auctor, est et pulvinar commodo, augue nunc aliquet magna, at pharetra ligula risus ac sem. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Curabitur ornare enim quis volutpat gravida. Vivamus vel bibendum erat. Maecenas mattis neque sed ex aliquam mattis.
+            </p>
+            <p>
+        Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed augue ex, imperdiet nec dolor quis, semper accumsan massa. Pellentesque mattis magna mi, nec condimentum massa tincidunt id. Suspendisse potenti. Quisque sodales tortor et erat porta, ac suscipit lacus finibus. Nulla rhoncus suscipit sem sed hendrerit. Suspendisse bibendum arcu quis hendrerit congue. Sed sodales aliquam arcu, sit amet dignissim quam semper eget. Curabitur auctor turpis id urna blandit, in semper ipsum malesuada. In in pellentesque justo. Cras congue posuere lectus, vitae volutpat eros luctus sit amet. Duis pellentesque massa justo, nec dignissim urna semper vitae.
+            </p>
+            <p>
+        Curabitur diam nibh, aliquet sit amet convallis id, ornare sit amet nibh. Ut nec ante urna. Vivamus sed convallis massa, a fringilla sem. Fusce nec sapien eu arcu hendrerit tincidunt. Mauris quis quam in orci tristique eleifend vitae vitae est. Etiam ut ipsum porttitor, semper urna quis, rutrum nisl. Cras in tempus risus, vel elementum nisl. Mauris scelerisque eros nibh, vel sagittis lorem pulvinar vel. Quisque ullamcorper massa ultrices, suscipit metus vel, commodo sem. Fusce ut ligula fermentum, viverra ante eu, convallis quam. Quisque aliquet tincidunt massa sed consectetur. In laoreet, metus a congue mattis, dui nulla interdum odio, vel tempus dui metus ac ante. Curabitur ut rutrum ipsum. Sed lectus lectus, consectetur in nisi nec, dictum malesuada arcu.
+            </p>
+            <p>
+        Ut dictum, nulla at tempor volutpat, erat elit convallis tellus, id vehicula mi ligula id nibh. Proin feugiat orci est, nec euismod felis cursus quis. Donec et bibendum justo. Aliquam erat volutpat. Ut congue felis porta nisi imperdiet elementum. Phasellus eget nunc risus. Donec accumsan eu nulla et eleifend. Aliquam in facilisis magna. Donec tristique, dolor vitae gravida molestie, odio orci egestas tellus, eu imperdiet dui augue condimentum ante. Etiam auctor suscipit metus, non molestie nibh pharetra ac. Pellentesque iaculis suscipit molestie. Proin at erat tempor, tristique metus a, semper urna. Suspendisse at posuere nulla. Mauris vitae venenatis dui, ac efficitur elit. Nunc quis consectetur tellus.
+            </p>
+            <p>
+        Vestibulum rutrum justo ut suscipit porttitor. Vestibulum lacinia mattis ligula vel dignissim. Duis ornare, justo ut vehicula ultricies, mauris risus suscipit nisi, quis tincidunt magna magna non metus. Etiam pharetra turpis id dictum sodales. Phasellus at molestie leo. Praesent in accumsan libero, eu luctus velit. In hac habitasse platea dictumst. Praesent in lorem eu lectus ultrices sagittis. Pellentesque nec placerat elit.
+            </p>
+            <hr />
+    </div>
+</div>
+<script>
+    function testSecureEndpoint() {
+        console.log("Connecting with a secure endpoint");
+        var headers = {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': "Bearer " + localStorage.getItem("access_token")
+                };
+        fetch("/secure", {
+                method: 'GET',
+                headers: headers
+            })
+            .then(data => {
+                if(data.status == 401) {
+                    alert("No tienes suficientes permisos");
+                }
+                console.log(data)
+
+                console.log("End Connecting with a secure endpoint");
+            });
+    }
+    testSecureEndpoint();
+</script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Logout View</title>
+    <script>
+        localStorage.removeItem("access_token");
+        console.log(localStorage.getItem("access_token"));
+        document.location.href="/index.html";
+    </script>
+</head>
+<body>
+</body>
+</html>

@@ -11,6 +11,9 @@
     <script>
         var access_token = localStorage.getItem("access_token");
         console.log(access_token);
+        if(access_token === null) {
+            document.location.href="/index.html";
+        }
     </script>
 </head>
 <body>
@@ -19,187 +22,52 @@
     <div class="row">
         <div class="col-12">
             <h1>Home</h1>
-            <a href="/index.html">Volver a Login</a>
+            <a href="/logout.html">Logout</a>
         </div>
     </div>
-    <div class="row">
-        <div class="col-6">
-            <h2>Madrid Postal Codes</h2>
-        </div>
-        <div class="col-6">
-            <h2>Madrid Cities</h2>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-6">
-            <div id="content"></div>
-        </div>
-        <div class="col-6">
-            <div id="content2"></div>
-        </div>
+    <div>
+        <div class="col-12">
+            <hr />
+            <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae elit metus. Donec id eros eu diam finibus pulvinar. Phasellus pretium ipsum quis libero ultricies rutrum. Quisque sit amet nulla elit. Sed hendrerit placerat magna, vitae luctus lorem finibus ornare. Praesent auctor, est et pulvinar commodo, augue nunc aliquet magna, at pharetra ligula risus ac sem. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Curabitur ornare enim quis volutpat gravida. Vivamus vel bibendum erat. Maecenas mattis neque sed ex aliquam mattis.
+            </p>
+            <p>
+        Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed augue ex, imperdiet nec dolor quis, semper accumsan massa. Pellentesque mattis magna mi, nec condimentum massa tincidunt id. Suspendisse potenti. Quisque sodales tortor et erat porta, ac suscipit lacus finibus. Nulla rhoncus suscipit sem sed hendrerit. Suspendisse bibendum arcu quis hendrerit congue. Sed sodales aliquam arcu, sit amet dignissim quam semper eget. Curabitur auctor turpis id urna blandit, in semper ipsum malesuada. In in pellentesque justo. Cras congue posuere lectus, vitae volutpat eros luctus sit amet. Duis pellentesque massa justo, nec dignissim urna semper vitae.
+            </p>
+            <p>
+        Curabitur diam nibh, aliquet sit amet convallis id, ornare sit amet nibh. Ut nec ante urna. Vivamus sed convallis massa, a fringilla sem. Fusce nec sapien eu arcu hendrerit tincidunt. Mauris quis quam in orci tristique eleifend vitae vitae est. Etiam ut ipsum porttitor, semper urna quis, rutrum nisl. Cras in tempus risus, vel elementum nisl. Mauris scelerisque eros nibh, vel sagittis lorem pulvinar vel. Quisque ullamcorper massa ultrices, suscipit metus vel, commodo sem. Fusce ut ligula fermentum, viverra ante eu, convallis quam. Quisque aliquet tincidunt massa sed consectetur. In laoreet, metus a congue mattis, dui nulla interdum odio, vel tempus dui metus ac ante. Curabitur ut rutrum ipsum. Sed lectus lectus, consectetur in nisi nec, dictum malesuada arcu.
+            </p>
+            <p>
+        Ut dictum, nulla at tempor volutpat, erat elit convallis tellus, id vehicula mi ligula id nibh. Proin feugiat orci est, nec euismod felis cursus quis. Donec et bibendum justo. Aliquam erat volutpat. Ut congue felis porta nisi imperdiet elementum. Phasellus eget nunc risus. Donec accumsan eu nulla et eleifend. Aliquam in facilisis magna. Donec tristique, dolor vitae gravida molestie, odio orci egestas tellus, eu imperdiet dui augue condimentum ante. Etiam auctor suscipit metus, non molestie nibh pharetra ac. Pellentesque iaculis suscipit molestie. Proin at erat tempor, tristique metus a, semper urna. Suspendisse at posuere nulla. Mauris vitae venenatis dui, ac efficitur elit. Nunc quis consectetur tellus.
+            </p>
+            <p>
+        Vestibulum rutrum justo ut suscipit porttitor. Vestibulum lacinia mattis ligula vel dignissim. Duis ornare, justo ut vehicula ultricies, mauris risus suscipit nisi, quis tincidunt magna magna non metus. Etiam pharetra turpis id dictum sodales. Phasellus at molestie leo. Praesent in accumsan libero, eu luctus velit. In hac habitasse platea dictumst. Praesent in lorem eu lectus ultrices sagittis. Pellentesque nec placerat elit.
+            </p>
+            <hr />
     </div>
 </div>
 <script>
     function testSecureEndpoint() {
-        //https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers
-        //https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept
-        //https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type
-        //https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization
+        console.log("Connecting with a secure endpoint");
         var headers = {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    'Authorization': localStorage.getItem("access_token")
+                    'Authorization': "Bearer " + localStorage.getItem("access_token")
                 };
-        //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
         fetch("/secure", {
                 method: 'GET',
                 headers: headers
             })
-            //.then(response => response.json())
             .then(data => {
+                if(data.status == 401) {
+                    alert("No tienes suficientes permisos");
+                }
                 console.log(data)
-            });
 
-        console.log("End PostalCodes");
+                console.log("End Connecting with a secure endpoint");
+            });
     }
     testSecureEndpoint();
 </script>
-
-<!--
-<script type="text/javascript">
-
-    /*
-    function showContent(arrData, div) {
-
-        var html = []
-        html.push("<ul>");
-        arrData.forEach(element => {
-            html.push("<li>");
-            html.push(element)
-            html.push("</li>");
-        });
-        html.push("</ul>");
-        document.getElementById(div).innerHTML = html.join("");
-    }
-
-    function getCodes() {
-        //https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers
-        //https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept
-        //https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type
-        var headers = {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                };
-        //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
-        fetch("/api/postalcodes", {
-                method: 'GET',
-                headers: headers
-            })
-            .then(response => response.json())
-            .then(data => {
-                showContent(data, "content");
-            });
-
-        console.log("End PostalCodes");
-    }
-
-    function getCities() {
-        var headers = {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                };
-        //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
-        fetch("/api/cities", {
-                method: 'GET',
-                headers: headers
-            })
-            .then(response => response.json())
-            .then(data => {
-                showContent(data, "content2");
-            });
-
-        console.log("End GetCities");
-    }
-
-    console.log("Ejemplo secuencial")
-    console.log("Start");
-    getCodes();
-    getCities();
-    console.log("End");
-    */
-</script>
-<script type="text/javascript">
-
-   function getCities2() {
-         return fetch("/cities", {
-                method: 'GET',
-                headers: {}
-            })
-            .then(response => response.json())
-            .then(data => {
-                return data;
-            });
-
-        console.log("End GetCities 2");
-    }
-
-    //getCities2().then(data => console.log(data));
-
-    var promise1 = getCities2();
-    var promise2 = getCities2();
-    var promise3 = getCities2();
-
-    console.log("Ejemplo con Promises.all")
-    console.log("Start");
-    //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all
-    Promise.all([promise1, promise2, promise3]).then((values) => {
-        console.log(values);
-    });
-    console.log("End");
-
-</script>
-<script type="text/javascript">
-
-   function getCities3() {
-         return fetch("/cities", {
-                method: 'GET',
-                headers: {}
-            })
-            .then(response => response.json())
-            .then(data => {
-                return data;
-            });
-    }
-
-    function getCities4(param) {
-
-         console.log("Encadenando parametro en siguiente llamada")
-         console.log(param)
-
-         return fetch("/cities", {
-                method: 'GET',
-                headers: {}
-            })
-            .then(response => response.json())
-            .then(data => {
-                return data;
-            });
-    }
-
-    console.log("Ejemplo encadenando funciones")
-    console.log("Start");
-    getCities3().then(data => {
-        console.log("Showing Data from GetCities3")
-        console.log(data)
-        console.log("Showing Data from GetCities4")
-        getCities4(data[0]).then(data => {
-            console.log(data)
-            console.log("End");
-        });
-    });
-
-
-</script>
--->
 </body>
 </html>

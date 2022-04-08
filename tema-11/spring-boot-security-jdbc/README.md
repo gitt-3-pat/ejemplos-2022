@@ -5,6 +5,9 @@
 ```
 user@test.com
 test
+
+admin@test.com
+test
 ```
 
 
